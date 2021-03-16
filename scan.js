@@ -19,7 +19,7 @@ async function scan() {
             log('  RSSI: ' + event.rssi);
             event.manufacturerData.forEach((valueDataView, key) => {
                 logDataView('Manufacturer', key, valueDataView);
-                log("weight is " + (key & 0xff00 + valueDataView.buffer[0])/10.0)
+                log("weight is " + ((key & 0xff00) + valueDataView.getUint8(0))/10.0)
             });
             log("-------------------------")
         });
