@@ -8,15 +8,8 @@
         </script>
     </head>
     <body>
+        <button onclick="scan();">scan</button>
         <log>
         </log>
-        <script>
-            if (isWebBluetoothEnabled()) {
-              scan();
-            }
-            else{
-                log("Web Bluetooth Disabled")
-            }
-        </script>
     </body>
 </html>
