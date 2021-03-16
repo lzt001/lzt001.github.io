@@ -2,8 +2,8 @@ function fill() {
     let b = document.querySelector("#start");
     b.style.width = document.body.clientWidth + "px";
     b.style.height = window.screen.height / 7 + "px";
-    b.style.fontSize = "80px"
-    document.querySelector("#weight").fontSize = "200px"
+    b.style.fontSize = document.body.clientWidth/10 + "px"
+    document.querySelector("#weight").fontSize = document.body.clientWidth/8 + "px"
 }
 
 function log(text) {
