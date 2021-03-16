@@ -1,29 +1,6 @@
 function log(text) {
     document.querySelector("log").innerHTML += "<p>" + text + "</p>"
 }
-
-function get() {
-    let options = {};
-    options.filters = [{
-        name: "dr01"
-    }];
-    navigator.bluetooth.requestDevice(options).then(function(device) {
-        log("started")
-        log('名称: ' + device.name);
-        device.addEventListener('advertisementreceived', (event) => {
-            log('Advertisement received.');
-            log('  Device Name: ' + event.device.name);
-            log('  RSSI: ' + event.rssi);
-            event.manufacturerData.forEach((valueDataView, key) => {
-                logDataView('Manufacturer', key, valueDataView);
-            });
-        });
-        log('Watching advertisements from "' + device.name + '"...');
-        return device.watchAdvertisements();
-    }).catch(function(error) {
-        log("出现错误： " + error);
-    });
-}
 async function scan() {
     let options = {};
     options.filters = [{
@@ -39,15 +16,10 @@ async function scan() {
         navigator.bluetooth.addEventListener('advertisementreceived', event => {
             log('Advertisement received.');
             log('  Device Name: ' + event.device.name);
-            log('  Device ID: ' + event.device.id);
             log('  RSSI: ' + event.rssi);
-            log('  TX Power: ' + event.txPower);
-            log('  UUIDs: ' + event.uuids);
             event.manufacturerData.forEach((valueDataView, key) => {
-                logDataView('Manufacturer', key, valueDataView);
-            });
-            event.serviceData.forEach((valueDataView, key) => {
-                logDataView('Service', key, valueDataView);
+                //logDataView('Manufacturer', key, valueDataView);
+                log()
             });
         });
         setTimeout(stopScan, 5000);
@@ -67,8 +39,8 @@ const logDataView = (labelOfDataSource, key, valueDataView) => {
         return b.toString(16).padStart(2, '0');
     }).join(' ');
     const textDecoder = new TextDecoder('ascii');
-    const asciiString = textDecoder.decode(valueDataView.buffer);
-    log(`  ${labelOfDataSource} Data: ` + key + '\n    (Hex) ' + hexString + '\n    (ASCII) ' + asciiString);
+    log('comp: ' + key);
+    log("hex: " + hexString)
 };
 
 function isWebBluetoothEnabled() {
