@@ -1,11 +1,12 @@
 function fill(){
 	let b = document.querySelector("#start");
 	b.style.width = document.body.clientWidth + "px";
-	b.style.height = window.screen.height/6 + "px";
+	b.style.height = window.screen.height/7 + "px";
 }
 
 function log(text) {
-    document.querySelector("log").innerHTML += "<p>" + text + "</p>"
+    //document.querySelector("log").innerHTML += "<p>" + text + "</p>";
+    console.log(text);
 }
 async function scan() {
     let options = {};
@@ -21,7 +22,7 @@ async function scan() {
             log('  RSSI: ' + event.rssi);
             event.manufacturerData.forEach((valueDataView, key) => {
             	let weight = ((key & 0xff00) + valueDataView.getUint8(0))/10.0;
-            	document.querySelector("#start").innerText = weight + "KG"
+            	document.querySelector("#weight").innerText = weight + "KG"
                 log("weight is " + weight);
             });
             log("-------------------------");
