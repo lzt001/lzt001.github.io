@@ -18,8 +18,7 @@ async function scan() {
             log('  Device Name: ' + event.device.name);
             log('  RSSI: ' + event.rssi);
             event.manufacturerData.forEach((valueDataView, key) => {
-                //logDataView('Manufacturer', key, valueDataView);
-                log()
+                logDataView('Manufacturer', key, valueDataView);
             });
         });
         setTimeout(stopScan, 5000);
