@@ -20,6 +20,7 @@ async function scan() {
             event.manufacturerData.forEach((valueDataView, key) => {
                 logDataView('Manufacturer', key, valueDataView);
             });
+            log("-------------------------")
         });
         setTimeout(stopScan, 5000);
 
@@ -41,12 +42,3 @@ const logDataView = (labelOfDataSource, key, valueDataView) => {
     log('comp: ' + key);
     log("hex: " + hexString)
 };
-
-function isWebBluetoothEnabled() {
-    if (navigator.bluetooth) {
-        return true;
-    } else {
-        ChromeSamples.setStatus('Web Bluetooth API is not available.\n' + 'Please make sure the "Experimental Web Platform features" flag is enabled.');
-        return false;
-    }
-}
