@@ -1,3 +1,9 @@
+function fill(){
+	let b = document.querySelector("#start");
+	b.style.width = document.body.clientWidth + "px";
+	b.style.height = window.screen.height/6 + "px";
+}
+
 function log(text) {
     document.querySelector("log").innerHTML += "<p>" + text + "</p>"
 }
@@ -7,21 +13,18 @@ async function scan() {
         name: "dr01"
     }];
     try {
-        log('Requesting Bluetooth Scan with options: ' + JSON.stringify(options));
-        const scan = await navigator.bluetooth.requestLEScan(options);
-        log('Scan started with:');
-        log(' active: ' + scan.active);
-        log(' keepRepeatedDevices: ' + scan.keepRepeatedDevices);
-        log(' filters: ' + JSON.stringify(scan.filters));
+        log('Requesting Bluetooth Scan');
+        const scan = await navigator.bluetooth.requestLEScan({filters:[{name: "dr01"}]});
         navigator.bluetooth.addEventListener('advertisementreceived', event => {
             log('Advertisement received.');
             log('  Device Name: ' + event.device.name);
             log('  RSSI: ' + event.rssi);
             event.manufacturerData.forEach((valueDataView, key) => {
-                logDataView('Manufacturer', key, valueDataView);
-                log("weight is " + ((key & 0xff00) + valueDataView.getUint8(0))/10.0)
+            	let weight = ((key & 0xff00) + valueDataView.getUint8(0))/10.0;
+            	document.querySelector("#start").innerText = weight + "KG"
+                log("weight is " + weight);
             });
-            log("-------------------------")
+            log("-------------------------");
         });
         setTimeout(stopScan, 5000);
 
@@ -34,12 +37,3 @@ async function scan() {
         log('Argh! ' + error);
     }
 }
-/* Utils */
-const logDataView = (labelOfDataSource, key, valueDataView) => {
-    const hexString = [...new Uint8Array(valueDataView.buffer)].map(b => {
-        return b.toString(16).padStart(2, '0');
-    }).join(' ');
-    const textDecoder = new TextDecoder('ascii');
-    log('comp: ' + key);
-    log("hex: " + hexString)
-};
