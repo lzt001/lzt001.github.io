@@ -14,7 +14,7 @@ function fill() {
     c.setAttribute("width", document.body.clientWidth);
     c.setAttribute("height", window.screen.height / 2.1);
     draw_ranges(c, user_height);
-    draw_pointer(c, 91.2, user_height);
+    draw_pointer(c, 91.4, user_height);
 }
 
 function draw_range(canvas, r, start, end, color, width) {
