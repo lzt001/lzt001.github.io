@@ -14,7 +14,7 @@ function fill() {
     c.setAttribute("width", document.body.clientWidth);
     c.setAttribute("height", window.screen.height / 2.1);
     draw_ranges(c, user_height);
-    draw_pointer(c, 91.2, user_height);
+    draw_pointer(c, 0, user_height);
 }
 
 function draw_range(canvas, r, start, end, color, width) {
@@ -48,11 +48,21 @@ function draw_ranges(canvas, height) {
 
 function draw_pointer(canvas, weight, height) {
     let ctx = canvas.getContext("2d");
+    let r = Math.min(canvas.offsetWidth, canvas.offsetHeight) / 2.4;
     ctx.beginPath();
     ctx.arc(canvas.offsetWidth / 2, canvas.offsetHeight / 2, 8, 0, 2 * Math.PI);
     ctx.fillStyle = get_bmi_color(weight, height)
     ctx.lineWidth = 1;
     ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(canvas.offsetWidth / 2, canvas.offsetHeight / 2);
+    ctx.lineTo(
+        canvas.offsetWidth / 2 - r * Math.cos((rad_range * weight / weight_range + unused_rad) * Math.PI), 
+        canvas.offsetHeight / 2 - r * Math.sin((rad_range * weight / weight_range + unused_rad) * Math.PI)
+        );
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = get_bmi_color(weight, height)
+    ctx.stroke();
 }
 
 function getdiv(height) {
@@ -69,15 +79,12 @@ function getdiv(height) {
 function get_bmi_color(weight, height) {
     let bmi = weight / (height * height);
     if (bmi < 18.4) {
-        return  "gray";
-    }
-    else if (bmi >= 18.4 && bmi < 24) {
+        return "gray";
+    } else if (bmi >= 18.4 && bmi < 24) {
         return "green";
-    }
-    else if (bmi >= 24 && bmi < 28) {
+    } else if (bmi >= 24 && bmi < 28) {
         return "yellow";
-    }
-    else {
+    } else {
         return "red";
     }
 }
@@ -101,6 +108,8 @@ async function scan() {
             event.manufacturerData.forEach((valueDataView, key) => {
                 let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                 document.querySelector("#weight").innerText = weight + "KG"
+                
+                draw_pointer(document.getElementById("indicator"), weight, user_height);
                 log("weight is " + weight);
                 if (weight > 0) {
                     stopScan();
