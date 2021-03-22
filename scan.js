@@ -13,8 +13,9 @@ function fill() {
     let c = document.getElementById("indicator");
     c.setAttribute("width", document.body.clientWidth);
     c.setAttribute("height", window.screen.height / 2.1);
-    draw_ranges(c, user_height);
-    draw_pointer(c, 0, user_height);
+    let r = Math.min(c.offsetWidth, c.offsetHeight) / 2.2;
+    draw_ranges(c, user_height, r);
+    draw_pointer(c, 0, user_height, r*0.92);
 }
 
 function draw_range(canvas, r, start, end, color, width) {
@@ -26,10 +27,9 @@ function draw_range(canvas, r, start, end, color, width) {
     ctx.stroke();
 }
 
-function draw_ranges(canvas, height) {
+function draw_ranges(canvas, height, r) {
     let bd = 0.0025
     let ctx = canvas.getContext("2d");
-    let r = Math.min(canvas.offsetWidth, canvas.offsetHeight) / 2.2;
     let div = getdiv(height);
     let udrad = div["underweight"] / weight_range * rad_range;
     let uwrad = div["overweight"] / weight_range * rad_range;
@@ -46,9 +46,8 @@ function draw_ranges(canvas, height) {
     draw_range(canvas, r, 1 + unused_rad + obrad, 1 + unused_rad + rad_range, "red", line_width);
 }
 
-function draw_pointer(canvas, weight, height) {
+function draw_pointer(canvas, weight, height, r) {
     let ctx = canvas.getContext("2d");
-    let r = Math.min(canvas.offsetWidth, canvas.offsetHeight) / 2.4;
     ctx.beginPath();
     ctx.arc(canvas.offsetWidth / 2, canvas.offsetHeight / 2, 8, 0, 2 * Math.PI);
     ctx.fillStyle = get_bmi_color(weight, height)
@@ -108,7 +107,6 @@ async function scan() {
             event.manufacturerData.forEach((valueDataView, key) => {
                 let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                 document.querySelector("#weight").innerText = weight + "KG"
-                
                 draw_pointer(document.getElementById("indicator"), weight, user_height);
                 log("weight is " + weight);
                 if (weight > 0) {
