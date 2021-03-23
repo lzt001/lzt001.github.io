@@ -129,12 +129,13 @@ async function scan() {
             });
             log("-------------------------");
         });
-        setTimeout(stopScan, 10000);
+        var t = setTimeout(stopScan, 10000);
 
         function stopScan() {
             log('Stopping scan...');
             scan.stop();
             log('Stopped.  scan.active = ' + scan.active);
+            t && clearTimeout(t);
         }
     } catch (error) {
         log('Argh! ' + error);
