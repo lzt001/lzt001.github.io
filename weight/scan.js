@@ -20,7 +20,7 @@ function fill() {
 
 function move_pointer(weight) {
     let interval = 1;
-    let length = 1000;
+    let length = 1200;
     let change = 150;
     let start;
     
