@@ -88,6 +88,12 @@ function get_bmi_color(weight, height) {
     }
 }
 
+function clr_canvas(canvas)  
+{  
+    var cxt=canvas.getContext("2d");
+    cxt.clearRect(0,0,canvas.width,canvas.height);  
+}  
+
 function log(text) {
     //document.querySelector("log").innerHTML += "<p>" + text + "</p>";
     console.log(text);
@@ -107,7 +113,10 @@ async function scan() {
             event.manufacturerData.forEach((valueDataView, key) => {
                 let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                 document.querySelector("#weight").innerText = weight + "KG"
-                draw_pointer(document.getElementById("indicator"), weight, user_height);
+                let c = document.getElementById("indicator");
+                clr_canvas(c);
+                draw_ranges(c, user_height, r);
+                draw_pointer(c, weight, user_height);
                 log("weight is " + weight);
                 if (weight > 0) {
                     stopScan();
