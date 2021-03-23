@@ -3,7 +3,6 @@ var unused_rad = 0.1;
 var rad_range = 1 - 2 * unused_rad;
 var weight_range = 100;
 var line_width = 14;
-var cnt = 0
 
 function fill() {
     let b = document.querySelector("#start");
@@ -16,22 +15,35 @@ function fill() {
     c.width = document.documentElement.clientWidth;
     c.height = document.documentElement.clientHeight / 2.1;
     draw_indicator(0);
-    //move_pointer(91.2);
+    move_pointer(91.2);
 }
 
 function move_pointer(weight) {
-    interval = 5;
-    length = 500;
+    let interval = 1;
+    let length = 1000;
+    let change = 20;
+    let cnt = 0;
     var it = setInterval(function () {
-        t = cnt / (length / interval) * 500 + 2 * Math.PI;
-        draw_indicator(weight * (Math.sin(t * t * t * t) / t + 1));
+        draw_indicator(weight * move(cnt));
         cnt++;
         if (cnt >= length / interval) {
             clearInterval(it);
             draw_indicator(weight);
         };
     }, interval);
-
+    function move(cnt) {
+        if (cnt <= change) {
+            let t = cnt / (change / interval);
+            return t;
+        }
+        else {
+            let t = (cnt - change) / ((length - change) / interval) * 100 + 2 * Math.PI;
+            t = Math.pow(1.5, t);
+            return Math.sin(t * t) / t + 1;
+            return 1;
+        }
+        
+    }
 }
 
 function draw_indicator(weight) {
@@ -72,6 +84,22 @@ function draw_ranges(canvas, height, r) {
 
 function draw_pointer(canvas, weight, height, r) {
     let ctx = canvas.getContext("2d");
+    //draw border
+    ctx.beginPath();
+    ctx.arc(canvas.offsetWidth / 2, canvas.offsetHeight / 2, 10, 0, 2 * Math.PI);
+    ctx.fillStyle = "black"
+    ctx.lineWidth = 1;
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(canvas.offsetWidth / 2, canvas.offsetHeight / 2);
+    ctx.lineTo(
+        canvas.offsetWidth / 2 - 1.008*r * Math.cos((rad_range * weight / weight_range + unused_rad) * Math.PI),
+        canvas.offsetHeight / 2 - 1.008 *r * Math.sin((rad_range * weight / weight_range + unused_rad) * Math.PI)
+    );
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "black"
+    ctx.stroke();
+    //draw pointer
     ctx.beginPath();
     ctx.arc(canvas.offsetWidth / 2, canvas.offsetHeight / 2, 8, 0, 2 * Math.PI);
     ctx.fillStyle = get_bmi_color(weight, height)
