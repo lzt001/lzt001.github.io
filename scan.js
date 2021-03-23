@@ -9,13 +9,19 @@ function fill() {
     b.style.width = document.body.clientWidth + "px";
     b.style.height = window.screen.height / 7 + "px";
     b.style.fontSize = document.body.clientWidth / 10 + "px";
-    document.querySelector("#weight").style.fontSize = document.body.clientWidth / 8 + "px";
     let c = document.getElementById("indicator");
     //c.setAttribute("width", document.documentElement.clientWidth);
     //c.setAttribute("height", document.documentElement.clientHeight / 2.1);
     c.width = document.documentElement.clientWidth;
     c.height = document.documentElement.clientHeight / 2.1;
     draw_indicator(0);
+}
+
+function show_weight(weight) {
+    let t = document.getElementById("weight");
+    t.style.fontSize = document.documentElement.clientWidth / 8 + "px";
+    t.innerText = weight + "KG";
+
 }
 
 function draw_indicator(weight) {
@@ -119,7 +125,8 @@ async function scan() {
             log('  RSSI: ' + event.rssi);
             event.manufacturerData.forEach((valueDataView, key) => {
                 let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
-                document.querySelector("#weight").innerText = weight + "KG";
+                //document.querySelector("#weight").innerText = weight + "KG";
+                show_weight(weight);
                 draw_indicator(weight);
                 log("weight is " + weight);
                 if (weight > 0) {
