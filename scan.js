@@ -3,6 +3,7 @@ var unused_rad = 0.1;
 var rad_range = 1 - 2 * unused_rad;
 var weight_range = 100;
 var line_width = 14;
+var cnt = 0
 
 function fill() {
     let b = document.querySelector("#start");
@@ -15,13 +16,13 @@ function fill() {
     c.width = document.documentElement.clientWidth;
     c.height = document.documentElement.clientHeight / 2.1;
     draw_indicator(0);
+    move_pointer(91.2);
 }
 
-function show_weight(weight) {
-    let t = document.getElementById("weight");
-    t.style.fontSize = document.documentElement.clientWidth / 8 + "px";
-    t.innerText = weight + "KG";
-    t.style.marginLeft = (document.documentElement.clientWidth - t.clientWidth) / 2 + "px";
+function move_pointer(weight) {
+    interval = 5
+    t = setInterval(cnt++, interval);
+    draw_indicator(weight * cnt / (1500 / interval));
 }
 
 function draw_indicator(weight) {
@@ -105,6 +106,13 @@ function get_bmi_color(weight, height) {
 function clr_canvas(canvas) {
     var cxt = canvas.getContext("2d");
     cxt.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function show_weight(weight) {
+    let t = document.getElementById("weight");
+    t.style.fontSize = document.documentElement.clientWidth / 8 + "px";
+    t.innerText = weight + "KG";
+    t.style.marginLeft = (document.documentElement.clientWidth - t.clientWidth) / 2 + "px";
 }
 
 function log(text) {
