@@ -23,7 +23,7 @@ function move_pointer(weight) {
     interval = 5;
     length = 500;
     var it = setInterval(function () {
-        t = cnt / (length / interval) * 500 + 5;
+        t = cnt / (length / interval) * 500 + 2 * Math.PI;
         draw_indicator(weight * (Math.sin(t * t * t * t) / t + 1));
         cnt++;
         if (cnt >= length / interval) {
