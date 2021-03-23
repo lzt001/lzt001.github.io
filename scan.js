@@ -6,8 +6,8 @@ var line_width = 14;
 
 function fill() {
     let b = document.querySelector("#start");
-    b.style.width = document.body.clientWidth + "px";
-    b.style.height = window.screen.height / 7 + "px";
+    b.style.width = document.documentElement.clientWidth + "px";
+    b.style.height = document.documentElement.clientHeight / 7 + "px";
     b.style.fontSize = document.body.clientWidth / 10 + "px";
     let c = document.getElementById("indicator");
     c.width = document.documentElement.clientWidth;
