@@ -20,9 +20,14 @@ function fill() {
 }
 
 function move_pointer(weight) {
-    interval = 5
-    t = setInterval(cnt++, interval);
-    draw_indicator(weight * cnt / (1500 / interval));
+    interval = 5;
+    length = 600;
+    var it = setInterval(function () {
+        draw_indicator(weight * cnt / (length / interval));
+        cnt++;
+        if (cnt >= length / interval) { clearInterval(it) };
+    }, interval);
+    
 }
 
 function draw_indicator(weight) {
