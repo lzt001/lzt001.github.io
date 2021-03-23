@@ -11,8 +11,8 @@ function fill() {
     b.style.fontSize = document.body.clientWidth / 10 + "px";
     document.querySelector("#weight").style.fontSize = document.body.clientWidth / 8 + "px";
     let c = document.getElementById("indicator");
-    c.setAttribute("width", document.body.clientWidth);
-    c.setAttribute("height", window.screen.height * window.devicePixelRatio / 2.1);
+    c.setAttribute("width", document.documentElement.clientWidth);
+    c.setAttribute("height", document.documentElement.clientHeight / 2.1);
     draw_indicator(0);
 }
 
