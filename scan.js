@@ -137,7 +137,6 @@ async function scan() {
             log('  RSSI: ' + event.rssi);
             event.manufacturerData.forEach((valueDataView, key) => {
                 let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
-                //document.querySelector("#weight").innerText = weight + "KG";
                 show_weight(weight);
                 move_pointer(weight);
                 log("weight is " + weight);
