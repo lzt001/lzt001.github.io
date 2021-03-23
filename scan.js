@@ -42,7 +42,7 @@ function move_pointer(weight) {
             return Math.sin(t * t) / t + 1;
             return 1;
         }
-        
+
     }
 }
 
@@ -86,15 +86,15 @@ function draw_pointer(canvas, weight, height, r) {
     let ctx = canvas.getContext("2d");
     //draw border
     ctx.beginPath();
-    ctx.arc(canvas.offsetWidth / 2, canvas.offsetHeight / 2, 10, 0, 2 * Math.PI);
+    ctx.arc(canvas.offsetWidth / 2, canvas.offsetHeight / 2, 9, 0, 2 * Math.PI);
     ctx.fillStyle = "black"
     ctx.lineWidth = 1;
     ctx.fill();
     ctx.beginPath();
     ctx.moveTo(canvas.offsetWidth / 2, canvas.offsetHeight / 2);
     ctx.lineTo(
-        canvas.offsetWidth / 2 - 1.008*r * Math.cos((rad_range * weight / weight_range + unused_rad) * Math.PI),
-        canvas.offsetHeight / 2 - 1.008 *r * Math.sin((rad_range * weight / weight_range + unused_rad) * Math.PI)
+        canvas.offsetWidth / 2 - 1.006 * r * Math.cos((rad_range * weight / weight_range + unused_rad) * Math.PI),
+        canvas.offsetHeight / 2 - 1.006 * r * Math.sin((rad_range * weight / weight_range + unused_rad) * Math.PI)
     );
     ctx.lineWidth = 3;
     ctx.strokeStyle = "black"
