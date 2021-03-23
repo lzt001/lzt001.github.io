@@ -10,8 +10,6 @@ function fill() {
     b.style.height = window.screen.height / 7 + "px";
     b.style.fontSize = document.body.clientWidth / 10 + "px";
     let c = document.getElementById("indicator");
-    //c.setAttribute("width", document.documentElement.clientWidth);
-    //c.setAttribute("height", document.documentElement.clientHeight / 2.1);
     c.width = document.documentElement.clientWidth;
     c.height = document.documentElement.clientHeight / 2.1;
     draw_indicator(0);
@@ -21,7 +19,7 @@ function show_weight(weight) {
     let t = document.getElementById("weight");
     t.style.fontSize = document.documentElement.clientWidth / 8 + "px";
     t.innerText = weight + "KG";
-
+    t.style.marginLeft = (document.documentElement.clientWidth - t.clientWidth) / 2 + "px";
 }
 
 function draw_indicator(weight) {
