@@ -15,14 +15,15 @@ function fill() {
     c.width = document.documentElement.clientWidth;
     c.height = document.documentElement.clientHeight / 2.1;
     draw_indicator(0);
-    //move_pointer(91.2);
+    move_pointer(91.2);
 }
 
 function move_pointer(weight) {
     let interval = 1;
     let length = 1000;
-    let change = 40;
-    let cnt = 0;
+    let change = 400;
+    let start;
+    /*
     var it = setInterval(function () {
         draw_indicator(weight * move(cnt));
         cnt++;
@@ -30,20 +31,31 @@ function move_pointer(weight) {
             clearInterval(it);
             draw_indicator(weight);
         };
-    }, interval);
-    function move(cnt) {
-        if (cnt <= change) {
-            let t = cnt / (change / interval);
-            return t;
+    }, interval);*/
+    
+    function move(stamp) {
+        if (start === undefined) { start = stamp };
+        const elapsed = stamp - start;
+
+        if (elapsed <= change) {
+            let t = elapsed / (change / interval);
+            draw_indicator(weight * t);
         }
         else {
-            let t = (cnt - change) / ((length - change) / interval) * 100 + 2 * Math.PI;
+            let t = (elapsed - change) / ((length - change) / interval) * 100 + 2 * Math.PI;
             t = Math.pow(1.5, t);
-            return Math.sin(t * t) / t + 1;
-            return 1;
+            draw_indicator(weight * (Math.sin(t * t) / t + 1));
         }
-
+        document.getElementById("weight").innerText = Math.round(elapsed);
+        if (elapsed < length) {
+            window.requestAnimationFrame(move);
+        }
+        else {
+            draw_indicator(weight);
+        }
     }
+
+    window.requestAnimationFrame(move);
 }
 
 function draw_indicator(weight) {
