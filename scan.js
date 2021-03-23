@@ -18,12 +18,12 @@ function fill() {
     draw_indicator(0);
 }
 
-function draw_indicator(weight){
+function draw_indicator(weight) {
     let c = document.getElementById("indicator");
     let r = Math.min(c.offsetWidth, c.offsetHeight) / 2.2;
     clr_canvas(c);
     draw_ranges(c, user_height, r);
-    draw_pointer(c, weight, user_height, r*0.92);
+    draw_pointer(c, weight, user_height, r * 0.92);
 }
 
 function draw_range(canvas, r, start, end, color, width) {
@@ -64,9 +64,9 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.beginPath();
     ctx.moveTo(canvas.offsetWidth / 2, canvas.offsetHeight / 2);
     ctx.lineTo(
-        canvas.offsetWidth / 2 - r * Math.cos((rad_range * weight / weight_range + unused_rad) * Math.PI), 
+        canvas.offsetWidth / 2 - r * Math.cos((rad_range * weight / weight_range + unused_rad) * Math.PI),
         canvas.offsetHeight / 2 - r * Math.sin((rad_range * weight / weight_range + unused_rad) * Math.PI)
-        );
+    );
     ctx.lineWidth = 2;
     ctx.strokeStyle = get_bmi_color(weight, height)
     ctx.stroke();
@@ -96,11 +96,10 @@ function get_bmi_color(weight, height) {
     }
 }
 
-function clr_canvas(canvas)  
-{  
-    var cxt=canvas.getContext("2d");
-    cxt.clearRect(0,0,canvas.width,canvas.height);  
-}  
+function clr_canvas(canvas) {
+    var cxt = canvas.getContext("2d");
+    cxt.clearRect(0, 0, canvas.width, canvas.height);
+}
 
 function log(text) {
     //document.querySelector("log").innerHTML += "<p>" + text + "</p>";
