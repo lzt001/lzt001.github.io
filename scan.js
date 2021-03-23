@@ -21,7 +21,7 @@ function fill() {
 function move_pointer(weight) {
     let interval = 1;
     let length = 1000;
-    let change = 20;
+    let change = 40;
     let cnt = 0;
     var it = setInterval(function () {
         draw_indicator(weight * move(cnt));
