@@ -16,17 +16,22 @@ function fill() {
     c.width = document.documentElement.clientWidth;
     c.height = document.documentElement.clientHeight / 2.1;
     draw_indicator(0);
+    //move_pointer(91.2);
 }
 
 function move_pointer(weight) {
     interval = 5;
-    length = 600;
+    length = 500;
     var it = setInterval(function () {
-        draw_indicator(weight * cnt / (length / interval));
+        t = cnt / (length / interval) * 500 + 5;
+        draw_indicator(weight * (Math.sin(t * t * t * t) / t + 1));
         cnt++;
-        if (cnt >= length / interval) { clearInterval(it) };
+        if (cnt >= length / interval) {
+            clearInterval(it);
+            draw_indicator(weight);
+        };
     }, interval);
-    
+
 }
 
 function draw_indicator(weight) {
