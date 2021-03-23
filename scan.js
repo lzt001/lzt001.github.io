@@ -16,7 +16,6 @@ function fill() {
     c.width = document.documentElement.clientWidth;
     c.height = document.documentElement.clientHeight / 2.1;
     draw_indicator(0);
-    move_pointer(91.2);
 }
 
 function move_pointer(weight) {
@@ -140,7 +139,7 @@ async function scan() {
                 let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                 //document.querySelector("#weight").innerText = weight + "KG";
                 show_weight(weight);
-                draw_indicator(weight);
+                move_pointer(weight);
                 log("weight is " + weight);
                 if (weight > 0) {
                     stopScan();
