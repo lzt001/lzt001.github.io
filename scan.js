@@ -13,9 +13,15 @@ function fill() {
     let c = document.getElementById("indicator");
     c.setAttribute("width", document.body.clientWidth);
     c.setAttribute("height", window.screen.height / 2.1);
+    draw_indicator(0);
+}
+
+function draw_indicator(weight){
+    let c = document.getElementById("indicator");
     let r = Math.min(c.offsetWidth, c.offsetHeight) / 2.2;
+    clr_canvas(c);
     draw_ranges(c, user_height, r);
-    draw_pointer(c, 0, user_height, r*0.92);
+    draw_pointer(c, weight, user_height, r*0.92);
 }
 
 function draw_range(canvas, r, start, end, color, width) {
@@ -112,12 +118,8 @@ async function scan() {
             log('  RSSI: ' + event.rssi);
             event.manufacturerData.forEach((valueDataView, key) => {
                 let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
-                document.querySelector("#weight").innerText = weight + "KG"
-                let c = document.getElementById("indicator");
-                let r = Math.min(c.offsetWidth, c.offsetHeight) / 2.2;
-                clr_canvas(c);
-                draw_ranges(c, user_height, r);
-                draw_pointer(c, weight, user_height, r*0.92);
+                document.querySelector("#weight").innerText = weight + "KG";
+                draw_indicator(weight);
                 log("weight is " + weight);
                 if (weight > 0) {
                     stopScan();
