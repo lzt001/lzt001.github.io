@@ -15,7 +15,7 @@ function fill() {
     c.width = document.documentElement.clientWidth;
     c.height = document.documentElement.clientHeight / 2.1;
     draw_indicator(0);
-    move_pointer(91.2);
+    //move_pointer(91.2);
 }
 
 function move_pointer(weight) {
