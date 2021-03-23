@@ -114,6 +114,7 @@ async function scan() {
                 let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                 document.querySelector("#weight").innerText = weight + "KG"
                 let c = document.getElementById("indicator");
+                let r = Math.min(c.offsetWidth, c.offsetHeight) / 2.2;
                 clr_canvas(c);
                 draw_ranges(c, user_height, r);
                 draw_pointer(c, weight, user_height);
