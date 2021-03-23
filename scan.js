@@ -37,7 +37,6 @@ function move_pointer(weight) {
             t = Math.pow(1.5, t);
             draw_indicator(weight * (Math.sin(t * t) / t + 1));
         }
-        document.getElementById("weight").innerText = Math.round(elapsed);
         if (elapsed < length) {
             window.requestAnimationFrame(move);
         }
