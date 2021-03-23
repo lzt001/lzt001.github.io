@@ -9,6 +9,8 @@ function fill() {
     b.style.width = document.documentElement.clientWidth + "px";
     b.style.height = document.documentElement.clientHeight / 7 + "px";
     b.style.fontSize = document.body.clientWidth / 10 + "px";
+    b.style.borderStyle = "none"
+
     let c = document.getElementById("indicator");
     c.width = document.documentElement.clientWidth;
     c.height = document.documentElement.clientHeight / 2.1;
