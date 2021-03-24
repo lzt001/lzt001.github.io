@@ -109,7 +109,7 @@ function draw_ranges(canvas, height, r) {
 function draw_pointer(canvas, weight, height, r) {
     let ctx = canvas.getContext("2d");
     let ctr_x = canvas.width / 2;
-    let ctr_x = canvas.height / 2;
+    let ctr_y = canvas.height / 2;
     //draw num
     ctx.font = Math.floor(canvas.width / 12) + "px Consolas";
     ctx.strokeStyle = "black";
