@@ -5,18 +5,22 @@ var weight_range = 150;
 var weight_bais = 30;
 var panel;
 var last_height;
-var i_green = "";
+var i_gray = "gray";
+var i_green = "green";
+var i_yellow = "yellow";
+var i_red = "red";
 
 function fill() {
-    let b = document.querySelector("#start");
+    let btn = document.querySelector("#start");
     let margin_width = parseInt(getComputedStyle(document.body, null).marginLeft);
     margin_width += parseInt(getComputedStyle(document.body, null).marginRight);
     let margin_height = parseInt(getComputedStyle(document.body, null).marginTop);
     margin_height += parseInt(getComputedStyle(document.body, null).marginBottom);
-    b.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) + "px";
-    b.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
-    b.style.fontSize = Math.floor(document.body.clientWidth / 13) + "px";
-    //b.style.borderStyle = "none";
+    btn.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) + "px";
+    btn.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
+    btn.style.fontSize = Math.floor(document.body.clientWidth / 13) + "px";
+
+    document.getElementById("weight").style.fontSize = document.documentElement.clientWidth / 12 + "px";
 
     let c = document.getElementById("indicator");
     let length = Math.min(document.documentElement.clientWidth - margin_width, document.documentElement.clientHeight - margin_height);
@@ -87,13 +91,13 @@ function draw_ranges(canvas, height, r) {
         //border
         draw_range(canvas, r, start_rad - bd, start_rad + rad_range + bd, "black", line_width + 4);
         //underweight"
-        draw_range(canvas, r, start_rad, start_rad + udrad, "gray", line_width);
+        draw_range(canvas, r, start_rad, start_rad + udrad, i_gray, line_width);
         //normal
-        draw_range(canvas, r, start_rad + udrad, start_rad + uwrad, "#00ff00", line_width);
+        draw_range(canvas, r, start_rad + udrad, start_rad + uwrad, i_green, line_width);
         //overweight
-        draw_range(canvas, r, start_rad + uwrad, start_rad + obrad, "yellow", line_width);
+        draw_range(canvas, r, start_rad + uwrad, start_rad + obrad, i_yellow, line_width);
         //obesity
-        draw_range(canvas, r, start_rad + obrad, start_rad + rad_range, "#ff0000", line_width);
+        draw_range(canvas, r, start_rad + obrad, start_rad + rad_range, i_red, line_width);
         last_height = height;
         panel = ctx.getImageData(0, 0, canvas.width, canvas.height);
     }
@@ -152,13 +156,13 @@ function getdiv(height) {
 function get_bmi_color(weight, height) {
     let bmi = weight / (height * height);
     if (bmi < 18.4) {
-        return "gray";
+        return i_gray;
     } else if (bmi >= 18.4 && bmi < 24) {
-        return "green";
+        return i_green;
     } else if (bmi >= 24 && bmi < 28) {
-        return "yellow";
+        return i_yellow;
     } else {
-        return "red";
+        return i_red;
     }
 }
 
@@ -168,10 +172,8 @@ function clr_canvas(canvas) {
 }
 
 function show_weight(weight) {
-    let t = document.getElementById("weight");
-    t.style.fontSize = document.documentElement.clientWidth / 8 + "px";
-    t.innerText = weight + "KG";
-    t.style.marginLeft = (document.documentElement.clientWidth - t.clientWidth) / 2 + "px";
+    document.getElementById("weight").innerText = weight + "KG";
+    //t.style.marginLeft = (document.documentElement.clientWidth - t.clientWidth) / 2 + "px";
 }
 
 function log(text) {
