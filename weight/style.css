@@ -8,13 +8,13 @@ div#settingwin {
 }
 
 input#height{
-    width: 50px;
+    width: 40px;
 }
 
 input#year {
-    width: 50px;
+    width: 40px;
 }
 
 input#month {
-    width: 20px;
+    width: 25px;
 }
