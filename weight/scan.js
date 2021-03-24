@@ -38,8 +38,8 @@ function fill() {
 
 function move_pointer(weight) {
     let interval = 1;
-    let length = 1200;
-    let change = 150;
+    let length = Math.floor(weight * 12);
+    let change = Math.floor(length * 0.2);
     let start;
 
     function move(stamp) {
@@ -127,7 +127,7 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.fillStyle = get_bmi_color(weight, height);
     ctx.fillText(txt, x, y);
 
-    
+
     x = r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI);
     y = r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI);
 
