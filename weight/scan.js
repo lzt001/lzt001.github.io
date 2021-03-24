@@ -254,7 +254,7 @@ function show_warning() {
     win.style.left = border + "px";
     border = document.documentElement.clientWidth - 2 * (border + parseInt(getComputedStyle(win).borderLeftWidth) + parseInt(getComputedStyle(win).paddingLeft));
     win.style.width = border + "px";
-    win.style.height = win.style.width;
+    //win.style.height = win.style.width;
     win.style.visibility = "visible";
     document.getElementById("settingwin").style.visibility = "hidden";
 }
