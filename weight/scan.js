@@ -102,7 +102,7 @@ function draw_range(canvas, r, start, end, color, width) {
 
 function draw_ranges(canvas, height, r) {
     let ctx = canvas.getContext("2d");
-    if (panel === undefined && last_height != height) {
+    if (panel === undefined || last_height != height) {
         let bd = 0.0013;
         let line_width = 45;
         let div = getdiv(height);
