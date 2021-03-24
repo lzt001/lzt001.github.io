@@ -122,8 +122,8 @@ function draw_pointer(canvas, weight, height, r) {
 
     let line_width = 6;
     let bd = 1.004
-    x = r * Math.cos(rad_range * weight / weight_range + start_rad) * Math.PI;
-    y = r * Math.sin(rad_range * weight / weight_range + start_rad) * Math.PI;
+    x = r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI);
+    y = r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI);
 
     //draw border
     ctx.beginPath();
