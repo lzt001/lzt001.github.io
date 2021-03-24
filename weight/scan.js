@@ -55,6 +55,7 @@ function update() {
     let d = new Date();
     user_age = d.getFullYear() - document.getElementById("year").value + (d.getMonth() - document.getElementById("month").value) / 12.0;
     localStorage.setItem("age", user_age);
+    draw_indicator(0);
 }
 
 function move_pointer(weight) {
