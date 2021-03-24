@@ -246,3 +246,15 @@ async function scan() {
         log('Argh! ' + error);
     }
 }
+
+function show_warning() {
+    let win = document.getElementById("show_warning");
+    let border = 10;
+    win.style.top = border + "px";
+    win.style.left = border + "px";
+    border = document.documentElement.clientWidth - 2 * (border + parseInt(getComputedStyle(win).borderLeftWidth) + parseInt(getComputedStyle(win).paddingLeft));
+    win.style.width = border + "px";
+    win.style.height = win.style.width;
+    win.style.visibility = "visible";
+    document.getElementById("settingwin").style.visibility = "hidden";
+}
