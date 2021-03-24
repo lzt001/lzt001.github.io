@@ -10,9 +10,16 @@
 </head>
 <body>
     <canvas id="indicator"></canvas>
-    <div>
+    <div id="settingwin" style="
+    position: absolute; visibility: hidden; overflow: hidden; 
+    border: 1px solid #CCC; background-color: #F9F9F9; 
+    border: 1px solid #333; padding: 5px;">
+        <p>设置：</p>
+        <button onclick="document.getElementById('settingwin').style.visibility = 'hidden';">关闭</button>
+    </div>
+    <div id="btns">
         <button id="start" onclick="scan();">开始扫描</button>
-        <button id="setting" onclick="">设置</button>
+        <button id="setting" onclick="setting();">设置</button>
     </div>
     <log />
     <script>

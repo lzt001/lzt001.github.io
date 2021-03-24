@@ -1,7 +1,8 @@
-var user_height = 1.75;
-var rad_range = 1.7;//2/1.618;
+var user_height = localStorage.getItem("height");
+var user_age = localStorage.getItem("age");
+var rad_range = 1.7;
 var start_rad = (2 - rad_range) / 2 + 0.5;
-var weight_range = 150;
+var weight_range = 100;
 var weight_bais = 30;
 var panel;
 var last_height;
@@ -34,6 +35,15 @@ function fill() {
     c.width = Math.floor(length * window.devicePixelRatio);
     c.height = Math.floor(length * window.devicePixelRatio);
     draw_indicator(0);
+}
+
+function setting() {
+    let win = document.getElementById("settingwin");
+    win.style.top = "10px";
+    win.style.left = "10px";
+    win.style.width = "200px";
+    win.style.height = "200px";
+    win.style.visibility = "visible";
 }
 
 function move_pointer(weight) {
@@ -190,6 +200,7 @@ function log(text) {
     //document.querySelector("log").innerHTML += "<p>" + text + "</p>";
     console.log(text);
 }
+
 async function scan() {
     draw_indicator(0);
     try {
