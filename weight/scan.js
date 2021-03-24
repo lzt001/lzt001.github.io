@@ -42,7 +42,7 @@ function setting() {
     let border = 10;
     win.style.top = border + "px";
     win.style.left = border + "px";
-    border = document.documentElement.clientWidth - 2 * (border + parseInt(win.style.borderLeftWidth) + parseInt(win.style.paddingLeft));
+    border = document.documentElement.clientWidth - 2 * (border + parseInt(win.style.borderLeftWidth) + parseInt(getComputedStyle(win).paddingLeft));
     win.style.width = border + "px";
     win.style.height = win.style.width;
     win.style.visibility = "visible";
