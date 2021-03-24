@@ -1,7 +1,8 @@
 var user_height = 1.75;
 var rad_range = 1.7;//2/1.618;
 var start_rad = (2 - rad_range) / 2 + 0.5;
-var weight_range = 100;
+var weight_range = 150;
+var weight_bais = 30;
 var panel;
 var last_height;
 
