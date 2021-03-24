@@ -21,12 +21,12 @@ function fill() {
     let btn = document.getElementById("start");
     btn.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) + "px";
     btn.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
-    btn.style.fontSize = Math.floor(document.body.clientWidth / 20) + "px";
+    btn.style.fontSize = Math.floor(document.body.clientWidth / 16) + "px";
     //setting btn
     btn = document.getElementById("setting");
     btn.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) - 6 + "px";
     btn.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
-    btn.style.fontSize = Math.floor(document.body.clientWidth / 20) + "px";
+    btn.style.fontSize = Math.floor(document.body.clientWidth / 16) + "px";
     //indicator canvas
     let c = document.getElementById("indicator");
     let length = Math.min(document.documentElement.clientWidth - margin_width, document.documentElement.clientHeight - margin_height);
@@ -49,7 +49,8 @@ function setting() {
 }
 
 function update() {
-
+    user_height = parseInt(document.getElementById("height").value) / 100.0;
+    localStorage.setItem("height", user_height);
 }
 
 function move_pointer(weight) {
