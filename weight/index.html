@@ -24,6 +24,9 @@
     <log />
     <script>
         fill();
+        if (localStorage.getItem("height") == null) {
+            setting();
+        }
     </script>
 </body>
 </html>

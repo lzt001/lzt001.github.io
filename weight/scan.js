@@ -51,6 +51,10 @@ function setting() {
 function update() {
     user_height = parseInt(document.getElementById("height").value) / 100.0;
     localStorage.setItem("height", user_height);
+    document.getElementById('settingwin').style.visibility = 'hidden';
+    let d = new Date();
+    user_age = d.getFullYear() - document.getElementById("year").value + (d.getMonth() - document.getElementById("month").value) / 12.0;
+    localStorage.setItem("age", user_age);
 }
 
 function move_pointer(weight) {
