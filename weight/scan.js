@@ -119,7 +119,7 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.lineWidth = line_width;
     ctx.font = Math.floor(canvas.width / 12) + "px Arial";
     ctx.strokeStyle = "black";
-    let txt = weight + "KG";
+    let txt = weight.toFixed(1) + "KG";
     let x = ctr_x - ctx.measureText(txt).width / 2;
     let y = canvas.height / 1.2;
     ctx.strokeText(txt, x, y);
