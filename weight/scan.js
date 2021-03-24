@@ -80,7 +80,7 @@ function draw_ranges(canvas, height, r) {
     let ctx = canvas.getContext("2d");
     if (panel === undefined && last_height != height) {
         let bd = 0.0013;
-        let line_width = 30;
+        let line_width = 45;
         let div = getdiv(height);
         let udrad = div["underweight"] / weight_range * rad_range;
         let uwrad = div["overweight"] / weight_range * rad_range;
