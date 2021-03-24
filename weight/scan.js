@@ -71,7 +71,7 @@ function draw_range(canvas, r, start, end, color, width) {
 function draw_ranges(canvas, height, r) {
     let ctx = canvas.getContext("2d");
     if (panel === undefined && last_height != height) {
-        let bd = 0.0025;
+        let bd = 0.0013;
         let line_width = 30;
         let div = getdiv(height);
         let udrad = div["underweight"] / weight_range * rad_range;
@@ -98,6 +98,7 @@ function draw_ranges(canvas, height, r) {
 function draw_pointer(canvas, weight, height, r) {
     let ctx = canvas.getContext("2d");
     let line_width = 6;
+    let bd = 1.004
     //draw border
     ctx.beginPath();
     ctx.arc(canvas.width / 2, canvas.height / 2, 9, 0, 2 * Math.PI);
@@ -107,8 +108,8 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.beginPath();
     ctx.moveTo(canvas.width / 2, canvas.height / 2);
     ctx.lineTo(
-        canvas.width / 2 + 1.006 * r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
-        canvas.height / 2 + 1.006 * r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
+        canvas.width / 2 + bd * r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
+        canvas.height / 2 + bd * r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
     );
     ctx.lineWidth = line_width + 2;
     ctx.strokeStyle = "black"
