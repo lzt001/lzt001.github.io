@@ -88,11 +88,11 @@ function draw_ranges(canvas, height, r) {
         //underweight"
         draw_range(canvas, r, start_rad, start_rad + udrad, "gray", line_width);
         //normal
-        draw_range(canvas, r, start_rad + udrad, start_rad + uwrad, "green", line_width);
+        draw_range(canvas, r, start_rad + udrad, start_rad + uwrad, "#59981A", line_width);
         //overweight
         draw_range(canvas, r, start_rad + uwrad, start_rad + obrad, "yellow", line_width);
         //obesity
-        draw_range(canvas, r, start_rad + obrad, start_rad + rad_range, "red", line_width);
+        draw_range(canvas, r, start_rad + obrad, start_rad + rad_range, "#F51720", line_width);
         last_height = height;
         panel = ctx.getImageData(0, 0, canvas.width, canvas.height);
     }
