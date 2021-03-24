@@ -58,7 +58,7 @@ function move_pointer(weight) {
 
 function draw_indicator(weight) {
     let c = document.getElementById("indicator");
-    let r = Math.min(c.width, c.height) / 2.2;
+    let r = Math.min(c.width, c.height) / 2;
     clr_canvas(c);
     draw_ranges(c, user_height, r);
     draw_pointer(c, weight, user_height, r * 0.92);
