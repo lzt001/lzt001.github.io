@@ -7,16 +7,21 @@ var last_height;
 
 function fill() {
     let b = document.querySelector("#start");
-    b.style.width = document.documentElement.clientWidth + "px";
-    b.style.height = document.documentElement.clientHeight / 7 + "px";
-    b.style.fontSize = document.body.clientWidth / 10 + "px";
+    let margin_width = paeseInt(getComputedStyle(document.body, null).marginLeft);
+    margin_width += paeseInt(getComputedStyle(document.body, null).marginRight);
+    let margin_height = paeseInt(getComputedStyle(document.body, null).marginTop);
+    margin_height += paeseInt(getComputedStyle(document.body, null).marginBottom);
+    b.style.width = document.documentElement.clientWidth - margin_width + "px";
+    b.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 7) + "px";
+    b.style.fontSize = Math.floor(document.body.clientWidth / 10) + "px";
     b.style.borderStyle = "none"
 
     let c = document.getElementById("indicator");
-    c.style.width = document.documentElement.clientWidth + "px";
-    c.style.height = document.documentElement.clientHeight / 2.1 + "px";
-    c.width = Math.floor(document.documentElement.clientWidth * window.devicePixelRatio);
-    c.height = Math.floor(document.documentElement.clientHeight / 2.1 * window.devicePixelRatio);
+    let length = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight)
+    c.style.width = length + "px";
+    c.style.height = length + "px";
+    c.width = Math.floor(length * window.devicePixelRatio);
+    c.height = Math.floor(length * window.devicePixelRatio);
     draw_indicator(0);
     //move_pointer(91.2);
 }
@@ -26,7 +31,7 @@ function move_pointer(weight) {
     let length = 1200;
     let change = 150;
     let start;
-    
+
     function move(stamp) {
         if (start === undefined) { start = stamp };
         const elapsed = stamp - start;
@@ -37,7 +42,7 @@ function move_pointer(weight) {
         }
         else {
             let t = (elapsed - change) / ((length - change) / interval) * 20 + 2 * Math.PI;
-            t = Math.pow(1.5, t); 
+            t = Math.pow(1.5, t);
             draw_indicator(weight * (Math.sin(t * t) / t + 1));
         }
         if (elapsed < length) {
@@ -175,7 +180,7 @@ async function scan() {
     draw_indicator(0);
     try {
         log('Requesting Bluetooth Scan');
-        const scan = await navigator.bluetooth.requestLEScan({ "acceptAllAdvertisements": true } );
+        const scan = await navigator.bluetooth.requestLEScan({ "acceptAllAdvertisements": true });
         navigator.bluetooth.addEventListener('advertisementreceived', event => {
             log('Advertisement received.');
             log('  Device Name: ' + event.device.name);
