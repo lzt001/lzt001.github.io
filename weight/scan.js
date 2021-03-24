@@ -14,10 +14,10 @@ function fill() {
     b.style.width = document.documentElement.clientWidth - margin_width + "px";
     b.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 7) + "px";
     b.style.fontSize = Math.floor(document.body.clientWidth / 10) + "px";
-    //b.style.borderStyle = "none"
+    //b.style.borderStyle = "none";
 
     let c = document.getElementById("indicator");
-    let length = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight)
+    let length = Math.min(document.documentElement.clientWidth - margin_width, document.documentElement.clientHeight - margin_height);
     c.style.width = length + "px";
     c.style.height = length + "px";
     c.width = Math.floor(length * window.devicePixelRatio);
