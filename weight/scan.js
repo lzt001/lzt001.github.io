@@ -248,7 +248,7 @@ async function scan() {
 }
 
 function show_warning() {
-    let win = document.getElementById("show_warning");
+    let win = document.getElementById("warning");
     let border = 10;
     win.style.top = border + "px";
     win.style.left = border + "px";
