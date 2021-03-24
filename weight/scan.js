@@ -11,21 +11,22 @@ var i_yellow = "yellow";
 var i_red = "red";
 
 function fill() {
+    //btn pos setting
     let margin_width = parseInt(getComputedStyle(document.body, null).marginLeft);
     margin_width += parseInt(getComputedStyle(document.body, null).marginRight);
     let margin_height = parseInt(getComputedStyle(document.body, null).marginTop);
     margin_height += parseInt(getComputedStyle(document.body, null).marginBottom);
-
+    //start scanning btn
     let btn = document.getElementById("start");
     btn.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) + "px";
     btn.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
     btn.style.fontSize = Math.floor(document.body.clientWidth / 13) + "px";
-
+    //setting btn
     btn = document.getElementById("setting");
     btn.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) - 6 + "px";
     btn.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
     btn.style.fontSize = Math.floor(document.body.clientWidth / 13) + "px";
-
+    //indicator canvas
     let c = document.getElementById("indicator");
     let length = Math.min(document.documentElement.clientWidth - margin_width, document.documentElement.clientHeight - margin_height);
     c.style.width = length + "px";
@@ -121,7 +122,7 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.strokeStyle = "black";
     let txt = weight.toFixed(1) + "KG";
     let x = ctr_x - ctx.measureText(txt).width / 2;
-    let y = canvas.height / 1.2;
+    let y = canvas.height / 1.1;
     ctx.strokeText(txt, x, y);
     ctx.fillStyle = get_bmi_color(weight, height);
     ctx.fillText(txt, x, y);
