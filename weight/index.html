@@ -17,6 +17,7 @@
         <button id="confirm" onclick="update();">确定</button>
         <button id="close" onclick="document.getElementById('settingwin').style.visibility = 'hidden';">关闭</button>
     </div>
+    <div id="warning">请启用以下浏览器选项："chrome://flags#enable-experimental-web-platform-features"</div>
     <div id="btns">
         <button id="start" onclick="scan();">开始扫描</button>
         <button id="setting" onclick="setting();">设置</button>
@@ -26,6 +27,16 @@
         fill();
         if (localStorage.getItem("height") == null) {
             setting();
+        }
+        try {
+            if (Bluetooth == null || Bluetooth === undefined) {
+                document.getElementById("settingwin").style.visibility = "visible";
+                console.log("ble disabled");
+            }
+        }
+        catch (error) {
+            document.getElementById("settingwin").style.visibility = "visible";
+            console.log("no ble");
         }
     </script>
 </body>

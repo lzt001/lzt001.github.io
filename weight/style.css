@@ -7,6 +7,15 @@ div#settingwin {
     padding: 5px;
 }
 
+div#warning {
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+    background-color: #F9F9F9;
+    border: 1px solid #333;
+    padding: 5px;
+}
+
 input#height{
     width: 40px;
 }
