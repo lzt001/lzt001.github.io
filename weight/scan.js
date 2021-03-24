@@ -11,20 +11,17 @@ var i_yellow = "yellow";
 var i_red = "red";
 
 function fill() {
-    let btn = document.querySelector("#start");
     let margin_width = parseInt(getComputedStyle(document.body, null).marginLeft);
     margin_width += parseInt(getComputedStyle(document.body, null).marginRight);
     let margin_height = parseInt(getComputedStyle(document.body, null).marginTop);
     margin_height += parseInt(getComputedStyle(document.body, null).marginBottom);
+
+    let btn = document.querySelector("#start");
     btn.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) + "px";
     btn.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
     btn.style.fontSize = Math.floor(document.body.clientWidth / 13) + "px";
 
     btn = document.querySelector("#setting");
-    let margin_width = parseInt(getComputedStyle(document.body, null).marginLeft);
-    margin_width += parseInt(getComputedStyle(document.body, null).marginRight);
-    let margin_height = parseInt(getComputedStyle(document.body, null).marginTop);
-    margin_height += parseInt(getComputedStyle(document.body, null).marginBottom);
     btn.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) + "px";
     btn.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
     btn.style.fontSize = Math.floor(document.body.clientWidth / 13) + "px";
