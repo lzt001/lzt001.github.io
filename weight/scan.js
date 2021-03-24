@@ -86,10 +86,10 @@ function draw_ranges(canvas, height, r) {
         //obesity
         draw_range(canvas, r, 1 + unused_rad + obrad, 1 + unused_rad + rad_range, "red", line_width);
         last_height = height;
-        panel = canvas.getImageData();
+        panel = ctx.getImageData();
     }
     else {
-        canvas.putImageData(panel);
+        ctx.putImageData(panel);
     }
 }
 
