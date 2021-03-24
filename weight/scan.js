@@ -20,8 +20,6 @@ function fill() {
     btn.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
     btn.style.fontSize = Math.floor(document.body.clientWidth / 13) + "px";
 
-    document.getElementById("weight").style.fontSize = document.documentElement.clientWidth / 12 + "px";
-
     let c = document.getElementById("indicator");
     let length = Math.min(document.documentElement.clientWidth - margin_width, document.documentElement.clientHeight - margin_height);
     c.style.width = length + "px";
@@ -29,7 +27,6 @@ function fill() {
     c.width = Math.floor(length * window.devicePixelRatio);
     c.height = Math.floor(length * window.devicePixelRatio);
     draw_indicator(0);
-    //move_pointer(91.2);
 }
 
 function move_pointer(weight) {
@@ -180,11 +177,6 @@ function clr_canvas(canvas) {
     cxt.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function show_weight(weight) {
-    document.getElementById("weight").innerText = weight + "KG";
-    //t.style.marginLeft = (document.documentElement.clientWidth - t.clientWidth) / 2 + "px";
-}
-
 function log(text) {
     //document.querySelector("log").innerHTML += "<p>" + text + "</p>";
     console.log(text);
@@ -201,7 +193,6 @@ async function scan() {
             event.manufacturerData.forEach((valueDataView, key) => {
                 if ((key & 0xff) == 0xdd) {
                     let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
-                    //show_weight(weight);
                     move_pointer(weight);
                     log("weight is " + weight);
                     if (weight > 0) {
