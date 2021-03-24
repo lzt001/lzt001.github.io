@@ -76,7 +76,7 @@ function draw_ranges(canvas, height, r) {
         let uwrad = div["overweight"] / weight_range * rad_range;
         let obrad = div["obesity"] / weight_range * rad_range;
         //border
-        draw_range(canvas, r, start_rad - bd, start_rad + rad_range + bd, "black", line_width + 3);
+        draw_range(canvas, r, start_rad - bd, start_rad + rad_range + bd, "black", line_width + 1);
         //underweight"
         draw_range(canvas, r, start_rad, start_rad + udrad, "gray", line_width);
         //normal
