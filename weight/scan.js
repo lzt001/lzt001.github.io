@@ -1,5 +1,5 @@
 var user_height = 1.75;
-var rad_range = 1.4;
+var rad_range = 1/1.618;
 var start_rad = (2 - rad_range) / 2 + 0.5;
 var weight_range = 100;
 var line_width = 14;
