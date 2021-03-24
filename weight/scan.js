@@ -99,7 +99,7 @@ function draw_pointer(canvas, weight, height, r) {
     let ctx = canvas.getContext("2d");
     //draw border
     ctx.beginPath();
-    ctx.arc(canvas.offsetWidth / 2, canvas.offsetHeight / 2, 9, 0, 2 * Math.PI);
+    ctx.arc(canvas.width / 2, canvas.height / 2, 9, 0, 2 * Math.PI);
     ctx.fillStyle = "black"
     ctx.lineWidth = 1;
     ctx.fill();
@@ -114,7 +114,7 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.stroke();
     //draw pointer
     ctx.beginPath();
-    ctx.arc(canvas.offsetWidth / 2, canvas.offsetHeight / 2, 8, 0, 2 * Math.PI);
+    ctx.arc(canvas.width / 2, canvas.height / 2, 8, 0, 2 * Math.PI);
     ctx.fillStyle = get_bmi_color(weight, height)
     ctx.lineWidth = 1;
     ctx.fill();
