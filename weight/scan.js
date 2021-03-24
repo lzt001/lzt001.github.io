@@ -110,7 +110,7 @@ function draw_pointer(canvas, weight, height, r) {
     let ctx = canvas.getContext("2d");
     //draw num
     ctx.font = Math.floor(canvas.width / 12) + "px Consolas";
-    ctx.fillText(weight + "KG", canvas.width / 2, canvas.height / 1.8);
+    ctx.fillText(weight + "KG", canvas.width / 2, canvas.height / 1.2);
 
     let line_width = 6;
     let bd = 1.004
