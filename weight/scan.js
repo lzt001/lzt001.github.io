@@ -3,6 +3,8 @@ var unused_rad = 0.1;
 var rad_range = 1 - 2 * unused_rad;
 var weight_range = 100;
 var line_width = 14;
+var panel;
+var last_height;
 
 function fill() {
     let b = document.querySelector("#start");
@@ -66,22 +68,29 @@ function draw_range(canvas, r, start, end, color, width) {
 }
 
 function draw_ranges(canvas, height, r) {
-    let bd = 0.0025
-    let ctx = canvas.getContext("2d");
-    let div = getdiv(height);
-    let udrad = div["underweight"] / weight_range * rad_range;
-    let uwrad = div["overweight"] / weight_range * rad_range;
-    let obrad = div["obesity"] / weight_range * rad_range;
-    //border
-    draw_range(canvas, r, 1 + unused_rad - bd, 1 + unused_rad + rad_range + bd, "black", line_width + 4);
-    //underweight"
-    draw_range(canvas, r, 1 + unused_rad, 1 + unused_rad + udrad, "gray", line_width);
-    //normal
-    draw_range(canvas, r, 1 + unused_rad + udrad, 1 + unused_rad + uwrad, "green", line_width);
-    //overweight
-    draw_range(canvas, r, 1 + unused_rad + uwrad, 1 + unused_rad + obrad, "yellow", line_width);
-    //obesity
-    draw_range(canvas, r, 1 + unused_rad + obrad, 1 + unused_rad + rad_range, "red", line_width);
+    if (panel === undefined && last_height != height) {
+        let bd = 0.0025
+        let ctx = canvas.getContext("2d");
+        let div = getdiv(height);
+        let udrad = div["underweight"] / weight_range * rad_range;
+        let uwrad = div["overweight"] / weight_range * rad_range;
+        let obrad = div["obesity"] / weight_range * rad_range;
+        //border
+        draw_range(canvas, r, 1 + unused_rad - bd, 1 + unused_rad + rad_range + bd, "black", line_width + 3);
+        //underweight"
+        draw_range(canvas, r, 1 + unused_rad, 1 + unused_rad + udrad, "gray", line_width);
+        //normal
+        draw_range(canvas, r, 1 + unused_rad + udrad, 1 + unused_rad + uwrad, "green", line_width);
+        //overweight
+        draw_range(canvas, r, 1 + unused_rad + uwrad, 1 + unused_rad + obrad, "yellow", line_width);
+        //obesity
+        draw_range(canvas, r, 1 + unused_rad + obrad, 1 + unused_rad + rad_range, "red", line_width);
+        last_height = height;
+        panel = canvas.getImageData();
+    }
+    else {
+        canvas.putImageData(panel);
+    }
 }
 
 function draw_pointer(canvas, weight, height, r) {
