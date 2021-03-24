@@ -104,7 +104,7 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.lineWidth = 1;
     ctx.fill();
     ctx.beginPath();
-    ctx.moveTo(canvas.offsetWidth / 2, canvas.offsetHeight / 2);
+    ctx.moveTo(canvas.width / 2, canvas.height / 2);
     ctx.lineTo(
         canvas.width / 2 + 1.006 * r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
         canvas.height / 2 + 1.006 * r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
@@ -119,7 +119,7 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.lineWidth = 1;
     ctx.fill();
     ctx.beginPath();
-    ctx.moveTo(canvas.offsetWidth / 2, canvas.offsetHeight / 2);
+    ctx.moveTo(canvas.width / 2, canvas.height / 2);
     ctx.lineTo(
         canvas.width / 2 + r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
         canvas.height / 2 + r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
