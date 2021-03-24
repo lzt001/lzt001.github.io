@@ -15,7 +15,7 @@ function fill() {
     margin_height += parseInt(getComputedStyle(document.body, null).marginBottom);
     b.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) + "px";
     b.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
-    b.style.fontSize = Math.floor(document.body.clientWidth / 10) + "px";
+    b.style.fontSize = Math.floor(document.body.clientWidth / 16) + "px";
     //b.style.borderStyle = "none";
 
     let c = document.getElementById("indicator");
