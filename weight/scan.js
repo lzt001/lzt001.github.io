@@ -159,6 +159,7 @@ function log(text) {
     console.log(text);
 }
 async function scan() {
+    draw_indicator(0);
     try {
         log('Requesting Bluetooth Scan');
         const scan = await navigator.bluetooth.requestLEScan({
