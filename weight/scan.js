@@ -162,7 +162,7 @@ async function scan() {
     draw_indicator(0);
     try {
         log('Requesting Bluetooth Scan');
-        const scan = await navigator.bluetooth.requestLEScan({ filters: [{ "acceptAllAdvertisements": true}] });
+        const scan = await navigator.bluetooth.requestLEScan({ "acceptAllAdvertisements": true } );
         navigator.bluetooth.addEventListener('advertisementreceived', event => {
             log('Advertisement received.');
             log('  Device Name: ' + event.device.name);
