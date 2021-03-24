@@ -5,7 +5,7 @@ var start_rad = (2 - rad_range) / 2 + 0.5;
 var weight_range = 100;
 var weight_bais = 30;
 var panel;
-var last_height;
+var last_height = null;
 var i_gray = "gray";
 var i_green = "green";
 var i_yellow = "yellow";
