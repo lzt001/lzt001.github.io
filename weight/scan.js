@@ -14,8 +14,10 @@ function fill() {
     b.style.borderStyle = "none"
 
     let c = document.getElementById("indicator");
-    c.width = 1080;//document.documentElement.clientWidth;
-    c.height = 1080;//document.documentElement.clientHeight / 2.1;
+    c.style.width = document.documentElement.clientWidth + "px";
+    c.style.height = document.documentElement.clientHeight / 2.1 + "px";
+    c.width = Math.floor(document.documentElement.clientWidth * window.devicePixelRatio);
+    c.height = Math.floor(document.documentElement.clientHeight / 2.1 * window.devicePixelRatio);
     draw_indicator(0);
     //move_pointer(91.2);
 }
