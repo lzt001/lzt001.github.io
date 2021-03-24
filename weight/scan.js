@@ -168,7 +168,7 @@ async function scan() {
             log('  Device Name: ' + event.device.name);
             log('  RSSI: ' + event.rssi);
             event.manufacturerData.forEach((valueDataView, key) => {
-                if ((key & 0xff00) == 0xdd) {
+                if ((key & 0xff) == 0xdd) {
                     let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                     show_weight(weight);
                     move_pointer(weight);
