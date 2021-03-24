@@ -22,7 +22,7 @@ function fill() {
     btn.style.fontSize = Math.floor(document.body.clientWidth / 13) + "px";
 
     btn = document.getElementById("setting");
-    btn.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) + "px";
+    btn.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) - 6 + "px";
     btn.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
     btn.style.fontSize = Math.floor(document.body.clientWidth / 13) + "px";
 
