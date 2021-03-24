@@ -108,6 +108,10 @@ function draw_ranges(canvas, height, r) {
 
 function draw_pointer(canvas, weight, height, r) {
     let ctx = canvas.getContext("2d");
+    //draw num
+    ctx.font = Math.floor(canvas.width / 12) + "px Consolas";
+    ctx.fillText(weight + "KG", canvas.width / 2, canvas.height / 1.8);
+
     let line_width = 6;
     let bd = 1.004
     //draw border
@@ -192,7 +196,7 @@ async function scan() {
             event.manufacturerData.forEach((valueDataView, key) => {
                 if ((key & 0xff) == 0xdd) {
                     let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
-                    show_weight(weight);
+                    //show_weight(weight);
                     move_pointer(weight);
                     log("weight is " + weight);
                     if (weight > 0) {
