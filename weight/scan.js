@@ -107,8 +107,11 @@ function draw_pointer(canvas, weight, height, r) {
     let ctx = canvas.getContext("2d");
     let ctr_x = canvas.width / 2;
     let ctr_y = canvas.height / 2;
+    let line_width = 6;
+    let bd = 1.004
     //draw num
     ctx.beginPath();
+    ctx.lineWidth = line_width;
     ctx.font = Math.floor(canvas.width / 12) + "px Arial";
     ctx.strokeStyle = "black";
     let txt = weight + "KG";
@@ -118,8 +121,7 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.fillStyle = get_bmi_color(weight, height);
     ctx.fillText(txt, x, y);
 
-    let line_width = 6;
-    let bd = 1.004
+    
     x = r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI);
     y = r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI);
 
