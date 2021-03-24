@@ -29,7 +29,7 @@
             setting();
         }
         try {
-            if (Bluetooth == null || Bluetooth === undefined) {
+            if (navigator.bluetooth.requestLEScan === undefined) {
                 document.getElementById("settingwin").style.visibility = "visible";
                 console.log("ble disabled");
             }
