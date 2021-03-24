@@ -39,10 +39,12 @@ function fill() {
 
 function setting() {
     let win = document.getElementById("settingwin");
-    win.style.top = "10px";
-    win.style.left = "10px";
-    win.style.width = "200px";
-    win.style.height = "200px";
+    let border = 10;
+    win.style.top = border + "px";
+    win.style.left = border + "px";
+    
+    win.style.width = document.documentElement.clientWidth - 2 * border + "px";
+    win.style.height = win.style.width;
     win.style.visibility = "visible";
 }
 
