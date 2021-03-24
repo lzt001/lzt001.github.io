@@ -20,6 +20,15 @@ function fill() {
     btn.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
     btn.style.fontSize = Math.floor(document.body.clientWidth / 13) + "px";
 
+    btn = document.querySelector("#setting");
+    let margin_width = parseInt(getComputedStyle(document.body, null).marginLeft);
+    margin_width += parseInt(getComputedStyle(document.body, null).marginRight);
+    let margin_height = parseInt(getComputedStyle(document.body, null).marginTop);
+    margin_height += parseInt(getComputedStyle(document.body, null).marginBottom);
+    btn.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) + "px";
+    btn.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
+    btn.style.fontSize = Math.floor(document.body.clientWidth / 13) + "px";
+
     let c = document.getElementById("indicator");
     let length = Math.min(document.documentElement.clientWidth - margin_width, document.documentElement.clientHeight - margin_height);
     c.style.width = length + "px";
@@ -110,7 +119,6 @@ function draw_pointer(canvas, weight, height, r) {
     let line_width = 6;
     let bd = 1.004
     //draw num
-    ctx.beginPath();
     ctx.lineWidth = line_width;
     ctx.font = Math.floor(canvas.width / 12) + "px Arial";
     ctx.strokeStyle = "black";
