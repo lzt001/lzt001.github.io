@@ -162,22 +162,20 @@ async function scan() {
     draw_indicator(0);
     try {
         log('Requesting Bluetooth Scan');
-        const scan = await navigator.bluetooth.requestLEScan({
-            filters: [{
-                name: "dr01"
-            }]
-        });
+        const scan = await navigator.bluetooth.requestLEScan(/*{ filters: [{ name: "dr01" }] }*/);
         navigator.bluetooth.addEventListener('advertisementreceived', event => {
             log('Advertisement received.');
             log('  Device Name: ' + event.device.name);
             log('  RSSI: ' + event.rssi);
             event.manufacturerData.forEach((valueDataView, key) => {
-                let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
-                show_weight(weight);
-                move_pointer(weight);
-                log("weight is " + weight);
-                if (weight > 0) {
-                    stopScan();
+                if ((key & 0xff00) == 0xdd) {
+                    let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
+                    show_weight(weight);
+                    move_pointer(weight);
+                    log("weight is " + weight);
+                    if (weight > 0) {
+                        stopScan();
+                    }
                 }
             });
             log("-------------------------");
