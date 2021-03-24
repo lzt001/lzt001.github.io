@@ -54,7 +54,7 @@ function move_pointer(weight) {
 
 function draw_indicator(weight) {
     let c = document.getElementById("indicator");
-    let r = Math.min(c.offsetWidth, c.offsetHeight) / 2.2;
+    let r = Math.min(c.width, c.height) / 2.2;
     clr_canvas(c);
     draw_ranges(c, user_height, r);
     draw_pointer(c, weight, user_height, r * 0.92);
@@ -63,7 +63,7 @@ function draw_indicator(weight) {
 function draw_range(canvas, r, start, end, color, width) {
     let ctx = canvas.getContext("2d");
     ctx.beginPath();
-    ctx.arc(canvas.offsetWidth / 2, canvas.offsetHeight / 2, r, start * Math.PI, end * Math.PI);
+    ctx.arc(canvas.width / 2, canvas.height / 2, r, start * Math.PI, end * Math.PI);
     ctx.strokeStyle = color;
     ctx.lineWidth = width;
     ctx.stroke();
@@ -106,8 +106,8 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.beginPath();
     ctx.moveTo(canvas.offsetWidth / 2, canvas.offsetHeight / 2);
     ctx.lineTo(
-        canvas.offsetWidth / 2 + 1.006 * r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
-        canvas.offsetHeight / 2 + 1.006 * r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
+        canvas.width / 2 + 1.006 * r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
+        canvas.height / 2 + 1.006 * r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
     );
     ctx.lineWidth = 3;
     ctx.strokeStyle = "black"
@@ -121,8 +121,8 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.beginPath();
     ctx.moveTo(canvas.offsetWidth / 2, canvas.offsetHeight / 2);
     ctx.lineTo(
-        canvas.offsetWidth / 2 + r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
-        canvas.offsetHeight / 2 + r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
+        canvas.width / 2 + r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
+        canvas.height / 2 + r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
     );
     ctx.lineWidth = 2;
     ctx.strokeStyle = get_bmi_color(weight, height)
