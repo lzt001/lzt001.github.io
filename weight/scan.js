@@ -14,7 +14,7 @@ function fill() {
     let margin_height = parseInt(getComputedStyle(document.body, null).marginTop);
     margin_height += parseInt(getComputedStyle(document.body, null).marginBottom);
     b.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) + "px";
-    b.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 9) + "px";
+    b.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 12) + "px";
     b.style.fontSize = Math.floor(document.body.clientWidth / 10) + "px";
     //b.style.borderStyle = "none";
 
