@@ -97,6 +97,7 @@ function draw_ranges(canvas, height, r) {
 
 function draw_pointer(canvas, weight, height, r) {
     let ctx = canvas.getContext("2d");
+    let line_width = 6;
     //draw border
     ctx.beginPath();
     ctx.arc(canvas.width / 2, canvas.height / 2, 9, 0, 2 * Math.PI);
@@ -109,7 +110,7 @@ function draw_pointer(canvas, weight, height, r) {
         canvas.width / 2 + 1.006 * r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
         canvas.height / 2 + 1.006 * r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
     );
-    ctx.lineWidth = 8;
+    ctx.lineWidth = line_width + 2;
     ctx.strokeStyle = "black"
     ctx.stroke();
     //draw pointer
@@ -124,7 +125,7 @@ function draw_pointer(canvas, weight, height, r) {
         canvas.width / 2 + r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
         canvas.height / 2 + r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
     );
-    ctx.lineWidth = 6;
+    ctx.lineWidth = line_width;
     ctx.strokeStyle = get_bmi_color(weight, height)
     ctx.stroke();
 }
