@@ -30,11 +30,13 @@
         }
         try {
             if (navigator.bluetooth.requestLEScan === undefined) {
+                document.getElementById("settingwin").style.visibility = "hidden";
                 document.getElementById("warning").style.visibility = "visible";
                 console.log("ble disabled");
             }
         }
         catch (error) {
+            document.getElementById("settingwin").style.visibility = "hidden";
             document.getElementById("warning").style.visibility = "visible";
             console.log("no ble");
         }
