@@ -48,6 +48,10 @@ function setting() {
     win.style.visibility = "visible";
 }
 
+function update() {
+
+}
+
 function move_pointer(weight) {
     let interval = 1;
     let length = Math.floor(weight * 12);
