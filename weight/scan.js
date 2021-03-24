@@ -1,6 +1,6 @@
 var user_height = 1.75;
-var unused_rad = 0.1;
-var rad_range = 1 - 2 * unused_rad;
+var rad_range = 1.4;
+var start_rad = (2 - rad_range) / 2 + 0.5;
 var weight_range = 100;
 var line_width = 14;
 var panel;
@@ -36,7 +36,7 @@ function move_pointer(weight) {
         }
         else {
             let t = (elapsed - change) / ((length - change) / interval) * 20 + 2 * Math.PI;
-            t = Math.pow(1.5, t);
+            t = Math.pow(1.5, t); 
             draw_indicator(weight * (Math.sin(t * t) / t + 1));
         }
         if (elapsed < length) {
@@ -76,15 +76,15 @@ function draw_ranges(canvas, height, r) {
         let uwrad = div["overweight"] / weight_range * rad_range;
         let obrad = div["obesity"] / weight_range * rad_range;
         //border
-        draw_range(canvas, r, 1 + unused_rad - bd, 1 + unused_rad + rad_range + bd, "black", line_width + 3);
+        draw_range(canvas, r, start_rad - bd, start_rad + rad_range + bd, "black", line_width + 3);
         //underweight"
-        draw_range(canvas, r, 1 + unused_rad, 1 + unused_rad + udrad, "gray", line_width);
+        draw_range(canvas, r, start_rad, start_rad + udrad, "gray", line_width);
         //normal
-        draw_range(canvas, r, 1 + unused_rad + udrad, 1 + unused_rad + uwrad, "green", line_width);
+        draw_range(canvas, r, start_rad + udrad, start_rad + uwrad, "green", line_width);
         //overweight
-        draw_range(canvas, r, 1 + unused_rad + uwrad, 1 + unused_rad + obrad, "yellow", line_width);
+        draw_range(canvas, r, start_rad + uwrad, start_rad + obrad, "yellow", line_width);
         //obesity
-        draw_range(canvas, r, 1 + unused_rad + obrad, 1 + unused_rad + rad_range, "red", line_width);
+        draw_range(canvas, r, start_rad + obrad, start_rad + rad_range, "red", line_width);
         last_height = height;
         panel = ctx.getImageData(0, 0, canvas.width, canvas.height);
     }
@@ -104,8 +104,8 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.beginPath();
     ctx.moveTo(canvas.offsetWidth / 2, canvas.offsetHeight / 2);
     ctx.lineTo(
-        canvas.offsetWidth / 2 - 1.006 * r * Math.cos((rad_range * weight / weight_range + unused_rad) * Math.PI),
-        canvas.offsetHeight / 2 - 1.006 * r * Math.sin((rad_range * weight / weight_range + unused_rad) * Math.PI)
+        canvas.offsetWidth / 2 - 1.006 * r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
+        canvas.offsetHeight / 2 - 1.006 * r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
     );
     ctx.lineWidth = 3;
     ctx.strokeStyle = "black"
@@ -119,8 +119,8 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.beginPath();
     ctx.moveTo(canvas.offsetWidth / 2, canvas.offsetHeight / 2);
     ctx.lineTo(
-        canvas.offsetWidth / 2 - r * Math.cos((rad_range * weight / weight_range + unused_rad) * Math.PI),
-        canvas.offsetHeight / 2 - r * Math.sin((rad_range * weight / weight_range + unused_rad) * Math.PI)
+        canvas.offsetWidth / 2 - r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
+        canvas.offsetHeight / 2 - r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
     );
     ctx.lineWidth = 2;
     ctx.strokeStyle = get_bmi_color(weight, height)
