@@ -2,7 +2,6 @@ var user_height = 1.75;
 var rad_range = 2/1.618;
 var start_rad = (2 - rad_range) / 2 + 0.5;
 var weight_range = 100;
-var line_width = 14;
 var panel;
 var last_height;
 
@@ -72,13 +71,14 @@ function draw_range(canvas, r, start, end, color, width) {
 function draw_ranges(canvas, height, r) {
     let ctx = canvas.getContext("2d");
     if (panel === undefined && last_height != height) {
-        let bd = 0.0025
+        let bd = 0.0025;
+        let line_width = 30;
         let div = getdiv(height);
         let udrad = div["underweight"] / weight_range * rad_range;
         let uwrad = div["overweight"] / weight_range * rad_range;
         let obrad = div["obesity"] / weight_range * rad_range;
         //border
-        draw_range(canvas, r, start_rad - bd, start_rad + rad_range + bd, "black", line_width + 2);
+        draw_range(canvas, r, start_rad - bd, start_rad + rad_range + bd, "black", line_width + 4);
         //underweight"
         draw_range(canvas, r, start_rad, start_rad + udrad, "gray", line_width);
         //normal
@@ -109,7 +109,7 @@ function draw_pointer(canvas, weight, height, r) {
         canvas.width / 2 + 1.006 * r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
         canvas.height / 2 + 1.006 * r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
     );
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 8;
     ctx.strokeStyle = "black"
     ctx.stroke();
     //draw pointer
@@ -124,7 +124,7 @@ function draw_pointer(canvas, weight, height, r) {
         canvas.width / 2 + r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
         canvas.height / 2 + r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
     );
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 6;
     ctx.strokeStyle = get_bmi_color(weight, height)
     ctx.stroke();
 }
