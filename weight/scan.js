@@ -5,6 +5,7 @@ var weight_range = 150;
 var weight_bais = 30;
 var panel;
 var last_height;
+var i_green = "";
 
 function fill() {
     let b = document.querySelector("#start");
@@ -12,8 +13,8 @@ function fill() {
     margin_width += parseInt(getComputedStyle(document.body, null).marginRight);
     let margin_height = parseInt(getComputedStyle(document.body, null).marginTop);
     margin_height += parseInt(getComputedStyle(document.body, null).marginBottom);
-    b.style.width = document.documentElement.clientWidth - margin_width + "px";
-    b.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 7) + "px";
+    b.style.width = Math.floor((document.documentElement.clientWidth - margin_width) / 2) + "px";
+    b.style.height = Math.floor((document.documentElement.clientHeight - margin_height) / 9) + "px";
     b.style.fontSize = Math.floor(document.body.clientWidth / 10) + "px";
     //b.style.borderStyle = "none";
 
