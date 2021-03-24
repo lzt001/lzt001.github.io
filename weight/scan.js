@@ -104,7 +104,7 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.beginPath();
     ctx.moveTo(canvas.offsetWidth / 2, canvas.offsetHeight / 2);
     ctx.lineTo(
-        canvas.offsetWidth / 2 - 1.006 * r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
+        canvas.offsetWidth / 2 + 1.006 * r * Math.cos((rad_range * weight / weight_range + start_rad) * Math.PI),
         canvas.offsetHeight / 2 - 1.006 * r * Math.sin((rad_range * weight / weight_range + start_rad) * Math.PI)
     );
     ctx.lineWidth = 3;
