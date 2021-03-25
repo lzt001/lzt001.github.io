@@ -148,8 +148,8 @@ function draw_ranges(canvas, height, r) {
 
 function draw_pointer(canvas, weight, height, r) {
     let ctx = canvas.getContext("2d");
-    let ctr_x = canvas.width / 2;
-    let ctr_y = canvas.height / 2;
+    let ctrx = canvas.width / 2;
+    let ctry = canvas.height / 2;
     let line_width = 6;
     let bd = 1.004
     //draw num
@@ -157,7 +157,7 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.font = Math.floor(canvas.width / 12) + "px Arial";
     ctx.strokeStyle = "black";
     let txt = weight.toFixed(1) + "KG";
-    let x = ctr_x - ctx.measureText(txt).width / 2;
+    let x = ctrx - ctx.measureText(txt).width / 2;
     let y = canvas.height / 1.1;
     ctx.strokeText(txt, x, y);
     ctx.fillStyle = get_bmi_color(weight, height);
@@ -175,7 +175,7 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.fill();
     ctx.beginPath();
     ctx.moveTo(canvas.width / 2, canvas.height / 2);
-    ctx.lineTo(ctr_x + bd * x, ctr_y + bd * y);
+    ctx.lineTo(ctrx + bd * x, ctry + bd * y);
     ctx.lineWidth = line_width + 2;
     ctx.strokeStyle = "black"
     ctx.stroke();
@@ -187,7 +187,7 @@ function draw_pointer(canvas, weight, height, r) {
     ctx.fill();
     ctx.beginPath();
     ctx.moveTo(canvas.width / 2, canvas.height / 2);
-    ctx.lineTo(ctr_x + x, ctr_y + y);
+    ctx.lineTo(ctrx + x, ctry + y);
     ctx.lineWidth = line_width;
     ctx.strokeStyle = get_bmi_color(weight, height)
     ctx.stroke();
@@ -254,7 +254,7 @@ function show_graph() {
     let yratio = (c.height - ybias*2) / yperiod;
     let ctx = c.getContext("2d");
     ctx.beginPath();
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 4;
     ctx.strokeStyle = "black";
     ctx.moveTo(0, c.height - 2);
     ctx.lineTo(c.width - 8, c.height);
@@ -265,13 +265,17 @@ function show_graph() {
     for (let i in dates) {
         i = parseInt(i);
         let weight = parseFloat(data[dates[i].toString()]);
+        let x = xratio * (dates[i] - xmin) + xbias;
+        let y = c.height - yratio * (weight - ymin) - ybias;
         ctx.beginPath();
-        ctx.arc(xratio * (dates[i] - xmin) + xbias, c.height - yratio * (weight - ymin) - ybias, 10, 0, 2 * Math.PI);
+        ctx.arc(x, y, 6, 0, 2 * Math.PI);
         ctx.fillStyle = get_bmi_color(weight, user_height);
         ctx.fill();
+        ctx.fillText(weight, x - ctx.measureText(weight).width / 2, y + ctx.measureText(weight).width);
+        ctx
         if (i < dates.length - 1) {
             ctx.strokeStyle = ctx.fillStyle;
-            ctx.moveTo(xratio * (dates[i] - xmin) + xbias, c.height - yratio * (weight - ymin) - ybias);
+            ctx.moveTo(x, y);
             ctx.lineTo(xratio * (dates[i + 1] - xmin) + xbias, c.height - yratio * (parseFloat(data[dates[i + 1].toString()]) - ymin) - ybias);
             ctx.stroke();
         }
