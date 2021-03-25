@@ -11,7 +11,7 @@ var i_gray = "gray";
 var i_green = "#00ff00";
 var i_yellow = "yellow";
 var i_red = "red";
-var bgc = "#ffffff";//"#9193a8";
+var bgc = "#91ffa8";
 
 function fill() {
     //btn pos setting
