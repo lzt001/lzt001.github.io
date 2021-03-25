@@ -6,6 +6,7 @@ var weight_range = 100;
 var weight_bais = 30;
 var panel;
 var last_height = 0;
+var last_data = 0;
 var i_gray = "gray";
 var i_green = "green";
 var i_yellow = "yellow";
@@ -229,17 +230,19 @@ async function scan() {
             log('  Device Name: ' + event.device.name);
             log('  RSSI: ' + event.rssi);
             event.manufacturerData.forEach((valueDataView, key) => {
-                if ((key & 0xff) == 0xdd) {
+                let date = parseInt(new Date().getTime());
+                if ((key & 0xff) == 0xdd && date - last_data >= 300) {
                     let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                     move_pointer(weight);
                     let data = JSON.parse(localStorage.getItem("data"));
                     !data ? data = {} : data;
-                    data[new Date().getTime()] = weight.toString();
+                    data[date] = weight.toString();
                     localStorage.setItem("data", JSON.stringify(data));
                     show_graph();
                     log("weight is " + weight);
                     if (weight > 0) {
                         stopScan();
+                        last_data = date;
                     }
                 }
             });
