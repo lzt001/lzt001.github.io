@@ -10,8 +10,8 @@ var last_data = 0;
 var i_gray = "gray";
 var i_green = "#00ff00";
 var i_yellow = "yellow";
-var i_red = "red";
-var bgc = "gray";
+var i_red = "#e65353";
+var bgc = "#315287";
 
 function fill() {
     //btn pos setting
