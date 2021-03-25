@@ -276,7 +276,7 @@ function show_graph() {
         ctx.fillText(weight, x - ctx.measureText(weight).width / 2, y + c.width / 30 + 9);
 
         ctx.beginPath();
-        let scale = 0.1;
+        let scale = 0.05;
         let xp1, yp1;
         if (i == 0) {
             continue;
