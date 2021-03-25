@@ -226,28 +226,30 @@ async function scan() {
         log('Requesting Bluetooth Scan');
         const scan = await navigator.bluetooth.requestLEScan({ "acceptAllAdvertisements": true });
         navigator.bluetooth.addEventListener('advertisementreceived', event => {
-            log('Advertisement received.');
-            log('  Device Name: ' + event.device.name);
-            log('  RSSI: ' + event.rssi);
-            event.manufacturerData.forEach((valueDataView, key) => {
-                let date = parseInt(new Date().getTime());
-                if ((key & 0xff) == 0xdd && date - last_data >= 1000) {
-                    log(date - last_data);
-                    let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
-                    move_pointer(weight);
-                    let data = JSON.parse(localStorage.getItem("data"));
-                    !data ? data = {} : data;
-                    data[date] = weight.toString();
-                    localStorage.setItem("data", JSON.stringify(data));
-                    show_graph();
-                    log("weight is " + weight);
-                    if (weight > 0) {
-                        last_data = date;
-                        stopScan();
+            if (scan.active) {
+                log('Advertisement received.');
+                log('  Device Name: ' + event.device.name);
+                log('  RSSI: ' + event.rssi);
+                event.manufacturerData.forEach((valueDataView, key) => {
+                    let date = parseInt(new Date().getTime());
+                    if ((key & 0xff) == 0xdd && date - last_data >= 8000) {
+                        log(date - last_data);
+                        let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
+                        move_pointer(weight);
+                        let data = JSON.parse(localStorage.getItem("data"));
+                        !data ? data = {} : data;
+                        data[date] = weight.toString();
+                        localStorage.setItem("data", JSON.stringify(data));
+                        show_graph();
+                        log("weight is " + weight);
+                        if (weight > 0) {
+                            last_data = date;
+                            stopScan();
+                        }
                     }
-                }
-            });
-            log("-------------------------");
+                });
+                log("-------------------------");
+            }
         });
         var t = setTimeout(stopScan, 10000);
 
