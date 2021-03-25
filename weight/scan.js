@@ -274,7 +274,7 @@ function show_graph() {
         ctx.arc(x, y, 6, 0, 2 * Math.PI);
         ctx.fillStyle = get_bmi_color(weight, user_height);
         ctx.fill();
-        ctx.fillText(weight, x - ctx.measureText(weight).width / 2, y + c.width / 30 / 1.1);
+        ctx.fillText(weight, x - ctx.measureText(weight).width / 2, y + c.width / 30 ;
         ctx
         if (i < dates.length - 1) {
             ctx.strokeStyle = ctx.fillStyle;
