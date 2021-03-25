@@ -277,7 +277,7 @@ function show_graph() {
         ctx.fillText(weight, x - ctx.measureText(weight).width / 2, y + c.width / 30 + 9);
 
         if (i == 0) {
-            ctx.lineTo(x, y);
+            ctx.moveTo(x, y);
             continue;
         }
         let scale = 0.25;
@@ -302,6 +302,7 @@ function show_graph() {
         ctx.strokeStyle = ctx.fillStyle;
         ctx.bezierCurveTo(cax, cay, cbx, cby, x, y);
         ctx.stroke();
+        ctx.moveTo(x, y);
         //if (i < dates.length - 1) {
         //    ctx.strokeStyle = ctx.fillStyle;
         //    ctx.moveTo(x, y);
