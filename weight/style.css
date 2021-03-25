@@ -20,10 +20,6 @@ button#setting {
     position: absolute;
 }
 
-canvas#graph {
-    background-color: #F9F9F9;
-}
-
 input#height{
     width: 50px;
 }

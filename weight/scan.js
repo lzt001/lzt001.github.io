@@ -11,6 +11,7 @@ var i_gray = "gray";
 var i_green = "green";
 var i_yellow = "yellow";
 var i_red = "red";
+var g_bgc = "black";
 
 function fill() {
     //btn pos setting
@@ -253,6 +254,8 @@ function show_graph() {
     let ybias = 80;
     let yratio = (c.height - ybias*2) / yperiod;
     let ctx = c.getContext("2d");
+    ctx.fillStyle = g_bgc;
+    ctx.fillRect(0, 0, c.width, c.height);
     ctx.beginPath();
     ctx.lineWidth = 4;
     ctx.strokeStyle = "black";
@@ -272,7 +275,6 @@ function show_graph() {
         ctx.arc(x, y, 6, 0, 2 * Math.PI);
         ctx.fillStyle = get_bmi_color(weight, user_height);
         ctx.fill();
-        ctx.beginPath();
         if (i == 0 || i == dates.length - 1) {
             ctx.fillText(weight, x - ctx.measureText(weight).width / 2, y + c.width / 30 + 9);
         } else {
