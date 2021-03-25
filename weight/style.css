@@ -16,8 +16,8 @@ div#warning {
     padding: 5px;
 }
 button#setting {
-    right: 0;
-    position: relative;
+    right: 8px;
+    position: absolute;
 }
 
 input#height{
