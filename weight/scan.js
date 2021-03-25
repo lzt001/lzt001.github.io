@@ -212,7 +212,7 @@ function clr_canvas(canvas) {
 function show_graph() {
     let c = document.getElementById("graph");
     let data = JSON.parse(localStorage.getItem("data"));
-    log(data);
+
 }
 
 function log(text) {
@@ -233,7 +233,6 @@ async function scan() {
                 event.manufacturerData.forEach((valueDataView, key) => {
                     let date = parseInt(new Date().getTime());
                     if ((key & 0xff) == 0xdd && date - last_data >= 500) {
-                        log(date - last_data);
                         let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                         move_pointer(weight);
                         let data = JSON.parse(localStorage.getItem("data"));
