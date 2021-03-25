@@ -263,6 +263,12 @@ function show_graph() {
         ctx.arc(xratio * (dates[i] - xmin) + xbias, c.height - yratio * (weight - ymin) - ybias, 10, 0, 2 * Math.PI);
         ctx.fillStyle = get_bmi_color(weight, user_height);
         ctx.fill();
+        if (i < dates.length - 1) {
+            ctx.strokeStyle = ctx.fillStyle;
+            ctx.moveTo(xratio * (dates[i] - xmin) + xbias, c.height - yratio * (weight - ymin) - ybias);
+            ctx.lineTo(xratio * (dates[i + 1] - xmin) + xbias, c.height - yratio * (parseFloat(data[dates[i + 1].toString()]) - ymin) - ybias);
+            ctx.stroke();
+        }
     }
 }
 
