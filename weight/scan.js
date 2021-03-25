@@ -10,7 +10,7 @@ var last_data = 0;
 var i_gray = "gray";
 var i_green = "#00ff00";
 var i_yellow = "yellow";
-var i_red = "#e65353";
+var i_red = "#ff0000";
 var bgc = "#315287";
 
 function fill() {
