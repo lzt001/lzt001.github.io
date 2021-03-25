@@ -259,7 +259,7 @@ function show_graph() {
     ctx.moveTo(0, c.height - 2);
     ctx.lineTo(c.width - 8, c.height);
     ctx.stroke();
-    ctx.moveTo(0, c.height - 2);
+    ctx.moveTo(0, c.height - 8);
     ctx.lineTo(2, 0);
     ctx.stroke();
     for (let i in dates) {
@@ -275,13 +275,35 @@ function show_graph() {
         ctx.fillStyle = get_bmi_color(weight, user_height);
         ctx.fill();
         ctx.fillText(weight, x - ctx.measureText(weight).width / 2, y + c.width / 30 + 9);
-        ctx
-        if (i < dates.length - 1) {
-            ctx.strokeStyle = ctx.fillStyle;
-            ctx.moveTo(x, y);
-            ctx.lineTo(xratio * (dates[i + 1] - xmin) + xbias, c.height - yratio * (parseFloat(data[dates[i + 1].toString()]) - ymin) - ybias);
-            ctx.stroke();
+
+        let scale = 0.25;
+        let xp1 = xratio * (dates[i - 1] - xmin) + xbias;
+        let yp1 = c.height - yratio * (parseFloat(data[dates[i - 1].toString()]) - ymin) - ybias
+        let xp2 = xratio * (dates[i - 2] - xmin) + xbias;
+        let yp2 = c.height - yratio * (parseFloat(data[dates[i - 2].toString()]) - ymin) - ybias
+        let xn1 = xratio * (dates[i + 1] - xmin) + xbias;
+        let yn1 = c.height - yratio * (parseFloat(data[dates[i + 1].toString()]) - ymin) - ybias
+        let cax = xp1 + (x - xp2) * scale;
+        let cay = yp1 + (y - yp2) * scale;
+        let cbx = x - (xn1 - xp1) * scale;
+        let cby = y - (yn1 - yp1) * scale;
+        if (i == 0) {
+            ctx.lineTo(x, y);
+            continue;
+        } else if (i == 1) {
+            cax = xp1 + (x - 0) * scale;
+            cay = yp1 + (y - c.height + 8) * scale;
+        } else if (i == dates.length - 1) {
+            cbx = x - (x - xp1) * scale;
+            cby = y - (y - yp1) * scale;
         }
+        ctx.bezierCurveTo(cax, cay, cbx, cby, x, y);
+        //if (i < dates.length - 1) {
+        //    ctx.strokeStyle = ctx.fillStyle;
+        //    ctx.moveTo(x, y);
+        //    ctx.lineTo(xratio * (dates[i + 1] - xmin) + xbias, c.height - yratio * (parseFloat(data[dates[i + 1].toString()]) - ymin) - ybias);
+        //    ctx.stroke();
+        //}
     }
 }
 
