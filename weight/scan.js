@@ -267,10 +267,7 @@ function show_graph() {
         let weight = parseFloat(data[dates[i].toString()]);
         let x = xratio * (dates[i] - xmin) + xbias;
         let y = c.height - yratio * (weight - ymin) - ybias;
-        ctx.beginPath();
         ctx.font = Math.floor(c.width / 30) + "px Arial";
-        //ctx.strokeStyle = "black"
-        //ctx.strokeText(weight, x - ctx.measureText(weight).width / 2, y + ctx.measureText(weight).width);
         ctx.arc(x, y, 6, 0, 2 * Math.PI);
         ctx.fillStyle = get_bmi_color(weight, user_height);
         ctx.fill();
