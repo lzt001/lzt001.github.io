@@ -234,7 +234,7 @@ async function scan() {
                     move_pointer(weight);
                     let data = JSON.parse(localStorage.getItem("data"));
                     !data ? data = {} : data;
-                    data[parseInt(new Date().getTime())] = weight;
+                    data[new Date().getTime()] = weight.toString();
                     localStorage.setItem("data", JSON.stringify(data));
                     show_graph();
                     log("weight is " + weight);
