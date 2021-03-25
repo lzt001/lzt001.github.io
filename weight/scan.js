@@ -232,7 +232,7 @@ async function scan() {
                 log('  RSSI: ' + event.rssi);
                 event.manufacturerData.forEach((valueDataView, key) => {
                     let date = parseInt(new Date().getTime());
-                    if ((key & 0xff) == 0xdd && date - last_data >= 8000) {
+                    if ((key & 0xff) == 0xdd && date - last_data >= 500) {
                         log(date - last_data);
                         let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                         move_pointer(weight);
