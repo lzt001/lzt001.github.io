@@ -8,10 +8,11 @@ var panel;
 var last_height = 0;
 var last_data = 0;
 var i_gray = "gray";
-var i_green = "#00ff00";
+var i_green = "#25ad23";
 var i_yellow = "yellow";
 var i_red = "#ff0000";
 var bgc = "#7dace3";
+var bgc2 = "#abbfd6";
 
 function fill() {
     //btn pos setting
@@ -256,15 +257,6 @@ function show_graph() {
     let ctx = c.getContext("2d");
     ctx.fillStyle = bgc;
     ctx.fillRect(0, 0, c.width, c.height);
-    ctx.beginPath();
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = "black";
-    ctx.moveTo(0, c.height - 2);
-    ctx.lineTo(c.width - 8, c.height);
-    ctx.stroke();
-    ctx.moveTo(0, c.height - 8);
-    ctx.lineTo(2, 0);
-    ctx.stroke();
     for (let i in dates) {
         i = parseInt(i);
         let weight = parseFloat(data[dates[i].toString()]);
