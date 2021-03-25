@@ -228,11 +228,16 @@ function show_graph() {
     let data = JSON.parse(localStorage.getItem("data"));
     let dates = new Array();
     let max, min;
+    let lastdate = new Date(0);
     for (let key in data) {
-        //let date = new Date(parseInt(key));
-        //log(date);
-        //log(parseFloat(data[key]));
-        dates.push(parseInt(key));
+        let date = new Date(parseInt(key));
+        if (lastdate.getFullYear() != date.getFullYear()
+            || lastdate.getMonth() != date.getMonth()
+            || lastdate.getDate() != date.getDate()
+            || lastdate.getHours() != date.getHours()) {
+            dates.push(parseInt(key));
+            lastdate = date;
+        }
         let weight = parseFloat(data[key])
         max = max > weight ? max : weight;
         min = min < weight ? min : weight;
