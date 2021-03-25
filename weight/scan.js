@@ -254,7 +254,7 @@ function show_graph() {
     let ybias = 80;
     let yratio = (c.height - ybias*2) / yperiod;
     let ctx = c.getContext("2d");
-    ctx.fillStyle = g_bgc;
+    ctx.fillStyle = bgc;
     ctx.fillRect(0, 0, c.width, c.height);
     ctx.beginPath();
     ctx.lineWidth = 4;
