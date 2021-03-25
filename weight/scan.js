@@ -226,8 +226,7 @@ function show_graph() {
     let c = document.getElementById("graph");
     let data = JSON.parse(localStorage.getItem("data"));
     let dates = new Array();
-    let max = 0;
-    let min = 0;
+    let max, min;
     for (let key in data) {
         //let date = new Date(parseInt(key));
         //log(date);
