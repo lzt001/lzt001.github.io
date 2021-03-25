@@ -294,13 +294,13 @@ async function scan() {
                 log('  Device Name: ' + event.device.name);
                 log('  RSSI: ' + event.rssi);
                 event.manufacturerData.forEach((valueDataView, key) => {
-                    let date = Date().toString();//parseInt(new Date().getTime());
+                    let date = parseInt(new Date().getTime());
                     if ((key & 0xff) == 0xdd && date - last_data >= 500) {
                         let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                         move_pointer(weight);
                         let data = JSON.parse(localStorage.getItem("data"));
                         !data ? data = {} : data;
-                        data[date] = weight.toString();
+                        data[new Date(date).toString()] = weight.toString();
                         localStorage.setItem("data", JSON.stringify(data));
                         show_graph();
                         log("weight is " + weight);
