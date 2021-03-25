@@ -258,6 +258,7 @@ function show_graph() {
     ctx.lineTo(2, 0);
     ctx.stroke();
     for (let i in dates) {
+        i = parseInt(i);
         let weight = parseFloat(data[dates[i].toString()]);
         ctx.beginPath();
         ctx.arc(xratio * (dates[i] - xmin) + xbias, c.height - yratio * (weight - ymin) - ybias, 10, 0, 2 * Math.PI);
