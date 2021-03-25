@@ -283,7 +283,7 @@ function show_graph() {
         } else {
             xp1 = xratio * (dates[i - 1] - xmin) + xbias;
             yp1 = c.height - yratio * (parseFloat(data[dates[i - 1].toString()]) - ymin) - ybias;
-            ctx.moveTo(xp1, yp2);
+            ctx.moveTo(xp1, yp1);
         }
         let xp2 = xratio * (dates[i - 2] - xmin) + xbias;
         let yp2 = i - 2 < 0 ? null : c.height - yratio * (parseFloat(data[dates[i - 2].toString()]) - ymin) - ybias;
