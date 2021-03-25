@@ -290,6 +290,7 @@ function show_graph() {
             cby = y - (y - yp1) * scale;
         }
         ctx.strokeStyle = "#00ffff";
+        ctx.lineWidth = 6;
         ctx.bezierCurveTo(cax, cay, cbx, cby, x, y);
         ctx.stroke();
     }
