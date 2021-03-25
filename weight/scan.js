@@ -35,6 +35,14 @@ function fill() {
     c.style.height = length + "px";
     c.width = Math.floor(length * window.devicePixelRatio);
     c.height = Math.floor(length * window.devicePixelRatio);
+    //graph canvas
+    c = document.getElementById("graph");
+    let width = document.documentElement.clientWidth - margin_width;
+    let height = document.documentElement.clientHeight - c.offsetTop - parseInt(getComputedStyle(document.body, null).marginBottom);
+    c.style.width = width + "px";
+    c.style.height = height + "px"
+    c.width = Math.floor(width * window.devicePixelRatio);
+    c.height = Math.floor(height * window.devicePixelRatio);
     draw_indicator(0);
     show_graph();
 }
@@ -213,11 +221,15 @@ function clr_canvas(canvas) {
 function show_graph() {
     let c = document.getElementById("graph");
     let data = JSON.parse(localStorage.getItem("data"));
+    let list = new Array();
     for (let key in data) {
-        let date = new Date(parseInt(key));
-        log(date);
-        log(parseFloat(data[key]));
+        //let date = new Date(parseInt(key));
+        //log(date);
+        //log(parseFloat(data[key]));
+        list.push(parseInt(key));
     }
+    list = list.sort((a, b) => a - b);
+    let period = list[list.length - 1] - list[0];
 }
 
 function log(text) {
