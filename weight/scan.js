@@ -45,6 +45,7 @@ function fill() {
     c.style.marginTop = margin + "px";
     c.width = Math.floor(width * window.devicePixelRatio);
     c.height = Math.floor(height * window.devicePixelRatio);
+
     draw_indicator(0);
     show_graph();
 }
@@ -68,6 +69,7 @@ function update() {
     user_age = d.getFullYear() - document.getElementById("year").value + (d.getMonth() + 1 - document.getElementById("month").value) / 12.0;
     localStorage.setItem("age", user_age);
     draw_indicator(0);
+    show_graph();
 }
 
 function move_pointer(weight) {
@@ -223,15 +225,44 @@ function clr_canvas(canvas) {
 function show_graph() {
     let c = document.getElementById("graph");
     let data = JSON.parse(localStorage.getItem("data"));
-    let list = new Array();
+    let dates = new Array();
+    let max = 0;
+    let min = 0;
     for (let key in data) {
         //let date = new Date(parseInt(key));
         //log(date);
         //log(parseFloat(data[key]));
-        list.push(parseInt(key));
+        dates.push(parseInt(key));
+        let weight = parseFloat(data[key])
+        weights.push(weight);
+        max = max > weight ? max : weight;
+        min = min < weight ? min : weight;
     }
-    list = list.sort((a, b) => a - b);
-    let period = list[list.length - 1] - list[0];
+    dates = dates.sort((a, b) => a - b);
+
+    let xperiod = dates[dates.length - 1] - dates[0];
+    let yperiod = max - min;
+    let xbias = 20;
+    let xratio = (c.width - xbias) / xperiod;
+    let ybias = 10;
+    let yratio = (c.height - ybias) / yperiod;
+    let ctx = c.getContext("2d");
+    ctx.beginPath();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "black";
+    ctx.moveTo(0, c.height - 2);
+    ctx.lineTo(c.width - 8, c.height);
+    ctx.stroke();
+    ctx.moveTo(0, c.height - 2);
+    ctx.lineTo(c.width - 8, 0);
+    ctx.stroke();
+    for (let date in dates) {
+        let weight = data[date.toString];
+        ctx.beginPath();
+        ctx.arc(xratio * date, yratio * weight, 3, 0, 2 * Math.PI);
+        ctx.fillStyle = get_bmi_color(weight, user_height);
+        ctx.fill();
+    }
 }
 
 function log(text) {
