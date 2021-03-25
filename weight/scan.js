@@ -11,7 +11,7 @@ var i_gray = "gray";
 var i_green = "#00ff00";
 var i_yellow = "yellow";
 var i_red = "red";
-var bgc = "#91ffa8";
+var bgc = "gray";
 
 function fill() {
     //btn pos setting
@@ -297,7 +297,7 @@ function show_graph() {
             cbx = x - (x - xp1) * scale;
             cby = y - (y - yp1) * scale;
         }
-        ctx.strokeStyle = "blue";
+        ctx.strokeStyle = "#00ffff";
         ctx.bezierCurveTo(cax, cay, cbx, cby, x, y);
         ctx.stroke();
     }
