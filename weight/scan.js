@@ -248,9 +248,9 @@ function show_graph() {
     let yperiod = max - min;
     let xmin = dates[0];
     let ymin = min;
-    let xbias = 60;
+    let xbias = 100;
     let xratio = (c.width - xbias*2) / xperiod;
-    let ybias = 40;
+    let ybias = 80;
     let yratio = (c.height - ybias*2) / yperiod;
     let ctx = c.getContext("2d");
     ctx.beginPath();
