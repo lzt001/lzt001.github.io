@@ -284,9 +284,9 @@ function show_graph() {
         let xp1 = xratio * (dates[i - 1] - xmin) + xbias;
         let yp1 = c.height - yratio * (parseFloat(data[dates[i - 1].toString()]) - ymin) - ybias;
         let xp2 = xratio * (dates[i - 2] - xmin) + xbias;
-        let yp2 = i - 2 < 0 ? 0 : c.height - yratio * (parseFloat(data[dates[i - 2].toString()]) - ymin) - ybias;
+        let yp2 = i - 2 < 0 ? null : c.height - yratio * (parseFloat(data[dates[i - 2].toString()]) - ymin) - ybias;
         let xn1 = xratio * (dates[i + 1] - xmin) + xbias;
-        let yn1 = i == dates.length - 1 ? 0 : c.height - yratio * (parseFloat(data[dates[i + 1].toString()]) - ymin) - ybias;
+        let yn1 = i == dates.length - 1 ? null : c.height - yratio * (parseFloat(data[dates[i + 1].toString()]) - ymin) - ybias;
         let cax = xp1 + (x - xp2) * scale;
         let cay = yp1 + (y - yp2) * scale;
         let cbx = x - (xn1 - xp1) * scale;
