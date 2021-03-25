@@ -231,7 +231,7 @@ async function scan() {
             log('  RSSI: ' + event.rssi);
             event.manufacturerData.forEach((valueDataView, key) => {
                 let date = parseInt(new Date().getTime());
-                if ((key & 0xff) == 0xdd && date - last_data >= 300) {
+                if ((key & 0xff) == 0xdd && date - last_data >= 200) {
                     let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                     move_pointer(weight);
                     let data = JSON.parse(localStorage.getItem("data"));
@@ -241,8 +241,8 @@ async function scan() {
                     show_graph();
                     log("weight is " + weight);
                     if (weight > 0) {
-                        stopScan();
                         last_data = date;
+                        stopScan();
                     }
                 }
             });
