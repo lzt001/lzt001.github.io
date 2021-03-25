@@ -276,21 +276,23 @@ function show_graph() {
         ctx.fill();
         ctx.fillText(weight, x - ctx.measureText(weight).width / 2, y + c.width / 30 + 9);
 
+        if (i == 0) {
+            ctx.lineTo(x, y);
+            continue;
+        }
         let scale = 0.25;
         let xp1 = xratio * (dates[i - 1] - xmin) + xbias;
-        let yp1 = c.height - yratio * (parseFloat(data[dates[i - 1].toString()]) - ymin) - ybias
+        let yp1 = c.height - yratio * (parseFloat(data[dates[i - 1].toString()]) - ymin) - ybias;
         let xp2 = xratio * (dates[i - 2] - xmin) + xbias;
-        let yp2 = c.height - yratio * (parseFloat(data[dates[i - 2].toString()]) - ymin) - ybias
+        let yp2 = i - 2 < 0 ? 0 : c.height - yratio * (parseFloat(data[dates[i - 2].toString()]) - ymin) - ybias;
         let xn1 = xratio * (dates[i + 1] - xmin) + xbias;
-        let yn1 = c.height - yratio * (parseFloat(data[dates[i + 1].toString()]) - ymin) - ybias
+        let yn1 = i - 2 < 0 ? 0 : c.height - yratio * (parseFloat(data[dates[i + 1].toString()]) - ymin) - ybias;
         let cax = xp1 + (x - xp2) * scale;
         let cay = yp1 + (y - yp2) * scale;
         let cbx = x - (xn1 - xp1) * scale;
         let cby = y - (yn1 - yp1) * scale;
-        if (i == 0) {
-            ctx.lineTo(x, y);
-            continue;
-        } else if (i == 1) {
+
+        if (i == 1) {
             cax = xp1 + (x - 0) * scale;
             cay = yp1 + (y - c.height + 8) * scale;
         } else if (i == dates.length - 1) {
