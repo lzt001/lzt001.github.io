@@ -256,7 +256,7 @@ function show_graph() {
     ctx.lineTo(2, 0);
     ctx.stroke();
     for (let i in dates) {
-        let weight = data[dates[i].toString];
+        let weight = data[dates[i].toString()];
         ctx.beginPath();
         ctx.arc(c.height - xratio * dates[i] - xbias, yratio * weight + ybias, 3, 0, 2 * Math.PI);
         ctx.fillStyle = get_bmi_color(weight, user_height);
