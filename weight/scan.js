@@ -208,6 +208,12 @@ function clr_canvas(canvas) {
     cxt.clearRect(0, 0, canvas.width, canvas.height);
 }
 
+function show_graph() {
+    let c = document.getElementById("graph");
+    let data = JSON.parse(localStorage.getItem("data"));
+    log(data);
+}
+
 function log(text) {
     //document.querySelector("log").innerHTML += "<p>" + text + "</p>";
     console.log(text);
@@ -226,6 +232,11 @@ async function scan() {
                 if ((key & 0xff) == 0xdd) {
                     let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                     move_pointer(weight);
+                    let data = JSON.parse(localStorage.getItem("data"));
+                    !data ? data = {} : data;
+                    data[new Date().getTime()] = weight;
+                    localStorage.setItem("data", JSON.stringify(data));
+                    show_graph();
                     log("weight is " + weight);
                     if (weight > 0) {
                         stopScan();

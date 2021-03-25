@@ -24,14 +24,15 @@
         <button id="start" onclick="scan();">开始扫描</button>
         <button id="setting" onclick="setting();">设置</button>
     </div>
+    <canvas id="graph"></canvas>
     <log />
     <script>
         fill();
-        if (localStorage.getItem("height") == null) {
+        if (!localStorage.getItem("height")) {
             setting();
         }
         try {
-            if (navigator.bluetooth.requestLEScan === undefined) {
+            if (!navigator.bluetooth.requestLEScan) {
                 show_warning()
                 console.log("ble disabled");
             }
