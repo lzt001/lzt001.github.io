@@ -253,7 +253,7 @@ function show_graph() {
     ctx.lineTo(c.width - 8, c.height);
     ctx.stroke();
     ctx.moveTo(0, c.height - 2);
-    ctx.lineTo(c.width - 8, 0);
+    ctx.lineTo(2, 0);
     ctx.stroke();
     for (let date in dates) {
         let weight = data[date.toString];
