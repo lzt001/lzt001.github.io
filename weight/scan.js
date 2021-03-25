@@ -235,7 +235,7 @@ function show_graph() {
             || lastdate.getMonth() != date.getMonth()
             || lastdate.getDate() != date.getDate()
             || lastdate.getHours() != date.getHours()) {
-            dates.push(parseInt(key));
+            dates.push(parseInt(date.getTime()));
             lastdate = date;
         }
         let weight = parseFloat(data[key])
