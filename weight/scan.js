@@ -264,7 +264,7 @@ function show_graph() {
     ctx.stroke();
     for (let i in dates) {
         i = parseInt(i);
-        let weight = parseFloat(data[dates[i].toString()]);
+        let weight = parseFloat(data[new Date(dates[i]).toString]);
         ctx.beginPath();
         ctx.arc(xratio * (dates[i] - xmin) + xbias, c.height - yratio * (weight - ymin) - ybias, 10, 0, 2 * Math.PI);
         ctx.fillStyle = get_bmi_color(weight, user_height);
@@ -272,7 +272,7 @@ function show_graph() {
         if (i < dates.length - 1) {
             ctx.strokeStyle = ctx.fillStyle;
             ctx.moveTo(xratio * (dates[i] - xmin) + xbias, c.height - yratio * (weight - ymin) - ybias);
-            ctx.lineTo(xratio * (dates[i + 1] - xmin) + xbias, c.height - yratio * (parseFloat(data[dates[i + 1].toString()]) - ymin) - ybias);
+            ctx.lineTo(xratio * (dates[i + 1] - xmin) + xbias, c.height - yratio * (parseFloat(data[new Date(dates[i + 1]).toString]) - ymin) - ybias);
             ctx.stroke();
         }
     }
