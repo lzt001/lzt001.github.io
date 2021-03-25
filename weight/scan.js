@@ -8,7 +8,7 @@ var panel;
 var last_height = 0;
 var last_data = 0;
 var i_gray = "gray";
-var i_green = "green";
+var i_green = "#00ff00";
 var i_yellow = "yellow";
 var i_red = "red";
 var bgc = "#9193a8";
