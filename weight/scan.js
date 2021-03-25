@@ -232,6 +232,7 @@ async function scan() {
             event.manufacturerData.forEach((valueDataView, key) => {
                 let date = parseInt(new Date().getTime());
                 if ((key & 0xff) == 0xdd && date - last_data >= 1000) {
+                    log(date - last_data);
                     let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                     move_pointer(weight);
                     let data = JSON.parse(localStorage.getItem("data"));
