@@ -277,11 +277,12 @@ function show_graph() {
 
         ctx.beginPath();
         let scale = 0.25;
-        let xp1 = xratio * (dates[i - 1] - xmin) + xbias;
-        let yp1 = c.height - yratio * (parseFloat(data[dates[i - 1].toString()]) - ymin) - ybias;
+        let xp1, yp1;
         if (i == 0) {
             continue;
         } else {
+            xp1 = xratio * (dates[i - 1] - xmin) + xbias;
+            yp1 = c.height - yratio * (parseFloat(data[dates[i - 1].toString()]) - ymin) - ybias;
             ctx.moveTo(xp1, yp2);
         }
         let xp2 = xratio * (dates[i - 2] - xmin) + xbias;
