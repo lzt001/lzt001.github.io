@@ -230,7 +230,7 @@ function show_graph() {
     let max, min;
     let lastdate = new Date(0);
     for (let key in data) {
-        let date = new Date(parseInt(key));
+        let date = new Date(key);
         if (lastdate.getFullYear() != date.getFullYear()
             || lastdate.getMonth() != date.getMonth()
             || lastdate.getDate() != date.getDate()
@@ -294,7 +294,7 @@ async function scan() {
                 log('  Device Name: ' + event.device.name);
                 log('  RSSI: ' + event.rssi);
                 event.manufacturerData.forEach((valueDataView, key) => {
-                    let date = parseInt(new Date().getTime());
+                    let date = Date().toString();//parseInt(new Date().getTime());
                     if ((key & 0xff) == 0xdd && date - last_data >= 500) {
                         let weight = ((key & 0xff00) + valueDataView.getUint8(0)) / 10.0;
                         move_pointer(weight);
