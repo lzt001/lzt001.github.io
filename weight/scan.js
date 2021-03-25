@@ -234,7 +234,6 @@ function show_graph() {
         //log(parseFloat(data[key]));
         dates.push(parseInt(key));
         let weight = parseFloat(data[key])
-        weights.push(weight);
         max = max > weight ? max : weight;
         min = min < weight ? min : weight;
     }
