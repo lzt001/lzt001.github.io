@@ -267,19 +267,23 @@ function show_graph() {
         let weight = parseFloat(data[dates[i].toString()]);
         let x = xratio * (dates[i] - xmin) + xbias;
         let y = c.height - yratio * (weight - ymin) - ybias;
+        ctx.beginPath();
         ctx.font = Math.floor(c.width / 30) + "px Arial";
         ctx.arc(x, y, 6, 0, 2 * Math.PI);
         ctx.fillStyle = get_bmi_color(weight, user_height);
         ctx.fill();
+        ctx.beginPath();
         ctx.fillText(weight, x - ctx.measureText(weight).width / 2, y + c.width / 30 + 9);
 
-        if (i == 0) {
-            ctx.moveTo(x, y);
-            continue;
-        }
+        ctx.beginPath();
         let scale = 0.25;
         let xp1 = xratio * (dates[i - 1] - xmin) + xbias;
         let yp1 = c.height - yratio * (parseFloat(data[dates[i - 1].toString()]) - ymin) - ybias;
+        if (i == 0) {
+            continue;
+        } else {
+            ctx.moveTo(xp1, yp2);
+        }
         let xp2 = xratio * (dates[i - 2] - xmin) + xbias;
         let yp2 = i - 2 < 0 ? null : c.height - yratio * (parseFloat(data[dates[i - 2].toString()]) - ymin) - ybias;
         let xn1 = xratio * (dates[i + 1] - xmin) + xbias;
@@ -299,7 +303,6 @@ function show_graph() {
         ctx.strokeStyle = ctx.fillStyle;
         ctx.bezierCurveTo(cax, cay, cbx, cby, x, y);
         ctx.stroke();
-        ctx.moveTo(x, y);
         //if (i < dates.length - 1) {
         //    ctx.strokeStyle = ctx.fillStyle;
         //    ctx.moveTo(x, y);
