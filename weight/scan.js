@@ -299,7 +299,9 @@ function show_graph() {
             cbx = x - (x - xp1) * scale;
             cby = y - (y - yp1) * scale;
         }
+        ctx.strokeStyle = ctx.fillStyle;
         ctx.bezierCurveTo(cax, cay, cbx, cby, x, y);
+        ctx.stroke();
         //if (i < dates.length - 1) {
         //    ctx.strokeStyle = ctx.fillStyle;
         //    ctx.moveTo(x, y);
