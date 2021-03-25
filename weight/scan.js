@@ -36,6 +36,7 @@ function fill() {
     c.width = Math.floor(length * window.devicePixelRatio);
     c.height = Math.floor(length * window.devicePixelRatio);
     draw_indicator(0);
+    show_graph();
 }
 
 function setting() {
@@ -54,7 +55,7 @@ function update() {
     localStorage.setItem("height", user_height);
     document.getElementById('settingwin').style.visibility = 'hidden';
     let d = new Date();
-    user_age = d.getFullYear() - document.getElementById("year").value + (d.getMonth() - document.getElementById("month").value) / 12.0;
+    user_age = d.getFullYear() - document.getElementById("year").value + (d.getMonth() + 1 - document.getElementById("month").value) / 12.0;
     localStorage.setItem("age", user_age);
     draw_indicator(0);
 }
@@ -212,7 +213,11 @@ function clr_canvas(canvas) {
 function show_graph() {
     let c = document.getElementById("graph");
     let data = JSON.parse(localStorage.getItem("data"));
-
+    for (let key in data) {
+        let date = new Date(parseInt(key));
+        log(date);
+        log(parseFloat(data[key]));
+    }
 }
 
 function log(text) {

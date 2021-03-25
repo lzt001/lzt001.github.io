@@ -17,13 +17,13 @@ div#warning {
 }
 
 input#height{
-    width: 40px;
+    width: 50px;
 }
 
 input#year {
-    width: 40px;
+    width: 50px;
 }
 
 input#month {
-    width: 25px;
+    width: 30px;
 }
