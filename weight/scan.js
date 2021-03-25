@@ -224,6 +224,7 @@ function clr_canvas(canvas) {
 
 function show_graph() {
     let c = document.getElementById("graph");
+    clr_canvas(c);
     let data = JSON.parse(localStorage.getItem("data"));
     let dates = new Array();
     let max, min;
