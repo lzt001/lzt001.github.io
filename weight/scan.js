@@ -269,11 +269,11 @@ function show_graph() {
     let ctx = c.getContext("2d");
     ctx.fillStyle = bgc;
     ctx.fillRect(0, 0, c.width, c.height);
-    plot_curve(c, xs, ys);
+    plot_curve(c, 0, canvas.height - 8, xs, ys);
     plot_number(c, xs, ys, weights, get_bmi_color);
 }
 
-function plot_curve(canvas, xs, ys, color = "#00ffff", width = 6) {
+function plot_curve(canvas, x, y, xs, ys, color = "#00ffff", width = 6) {
     let ctx = canvas.getContext("2d");
     for (let i = 0; i < xs.length; i++) {
         let scale = 0.06;
@@ -284,22 +284,22 @@ function plot_curve(canvas, xs, ys, color = "#00ffff", width = 6) {
             ctx.moveTo(xs[i - 1], ys[i - 1]);
         }
 
-        let xp2 = xs[i - 2];
-        let yp2 = i - 2 < 0 ? null : ys[i - 2];
-        let xn1 = xs[i + 1];
-        let yn1 = i == xs.length - 1 ? null : ys[i + 1];
+        let xp2 = i - 2 < 0 ? x : xs[i - 2];
+        let yp2 = i - 2 < 0 ? y : ys[i - 2];
+        let xn1 = i == xs.length - 1 ? xs[i] : xs[i + 1];
+        let yn1 = i == xs.length - 1 ? ys[i] : ys[i + 1];
         let cax = xs[i - 1] + (xs[i] - xp2) * scale;
         let cay = ys[i - 1] + (ys[i] - yp2) * scale;
         let cbx = xs[i] - (xn1 - xs[i - 1]) * scale;
         let cby = ys[i] - (yn1 - ys[i - 1]) * scale;
 
-        if (i == 1) {
-            cax = xs[i - 1] + (xs[i] - 0) * scale;
-            cay = ys[i - 1] + (ys[i] - canvas.height + 8) * scale;
+        /*if (i == 1) {
+            cax = xs[i - 1] + (xs[i] - x) * scale;
+            cay = ys[i - 1] + (ys[i] - y) * scale;
         } else if (i == xs.length - 1) {
             cbx = xs[i] - (xs[i] - xs[i - 1]) * scale;
             cby = ys[i] - (ys[i] - ys[i - 1]) * scale;
-        }
+        }*/
         ctx.strokeStyle = color;
         ctx.lineWidth = width;
         ctx.bezierCurveTo(cax, cay, cbx, cby, xs[i], ys[i]);
