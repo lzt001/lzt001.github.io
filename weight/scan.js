@@ -41,10 +41,9 @@ function fill() {
     c = document.getElementById("graph");
     let width = document.documentElement.clientWidth - margin_width;
     let height = document.documentElement.clientHeight - c.offsetTop - parseInt(getComputedStyle(document.body, null).marginBottom);
-    let margin = 4;
+    let margin = 0;
     c.style.width = width+ "px";
     c.style.height = height - margin * 2 + "px";
-    c.style.marginTop = margin + "px";
     c.width = Math.floor(width * window.devicePixelRatio);
     c.height = Math.floor(height * window.devicePixelRatio);
 
