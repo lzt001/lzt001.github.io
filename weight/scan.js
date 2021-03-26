@@ -318,7 +318,7 @@ function plot_number(canvas, xs, ys, value, color = "black", font = "default", p
         let x = xs[i];
         let y = ys[i];
         ctx.beginPath();
-        ctx.font = font == "default" ? Math.floor(c.width / 30) + "px Arial" : font;
+        ctx.font = font == "default" ? Math.floor(canvas.width / 30) + "px Arial" : font;
         ctx.arc(xs[i], ys[i], ptsize, 0, 2 * Math.PI);
         ctx.fillStyle = isColor(color) ? color : color(value);
         ctx.fill();
