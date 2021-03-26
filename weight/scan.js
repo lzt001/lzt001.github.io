@@ -269,7 +269,7 @@ function show_graph() {
     let ctx = c.getContext("2d");
     ctx.fillStyle = bgc;
     ctx.fillRect(0, 0, c.width, c.height);
-    plot_curve(c, 0, canvas.height - 8, xs, ys);
+    plot_curve(c, 0, c.height - 8, xs, ys);
     plot_number(c, xs, ys, weights, get_bmi_color);
 }
 
