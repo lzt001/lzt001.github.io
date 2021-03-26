@@ -262,7 +262,7 @@ function show_graph() {
         let weight = parseFloat(data[dates[i].toString()]);
         let x = xratio * (dates[i] - xmin) + xbias;
         let y = c.height - yratio * (weight - ymin) - ybias;
-        let scale = 0.06;
+        let scale = 0.08;
         let xp1, yp1;
         ctx.beginPath();
         if (i == 0) {
