@@ -271,60 +271,6 @@ function show_graph() {
     ctx.fillRect(0, 0, c.width, c.height);
     plot_curve(c, xs, ys);
     plot_number(c, xs, ys, weights, get_bmi_color);
-    /*for (let i in dates) {
-        i = parseInt(i);
-        let weight = parseFloat(data[dates[i].toString()]);
-        let x = xratio * (dates[i] - xmin) + xbias;
-        let y = c.height - yratio * (weight - ymin) - ybias;
-        let scale = 0.06;
-        let xp1, yp1;
-        ctx.beginPath();
-        if (i == 0) {
-            continue;
-        } else {
-            xp1 = xratio * (dates[i - 1] - xmin) + xbias;
-            yp1 = c.height - yratio * (parseFloat(data[dates[i - 1].toString()]) - ymin) - ybias;
-            ctx.moveTo(xp1, yp1);
-        }
-
-        let xp2 = xratio * (dates[i - 2] - xmin) + xbias;
-        let yp2 = i - 2 < 0 ? null : c.height - yratio * (parseFloat(data[dates[i - 2].toString()]) - ymin) - ybias;
-        let xn1 = xratio * (dates[i + 1] - xmin) + xbias;
-        let yn1 = i == dates.length - 1 ? null : c.height - yratio * (parseFloat(data[dates[i + 1].toString()]) - ymin) - ybias;
-        let cax = xp1 + (x - xp2) * scale;
-        let cay = yp1 + (y - yp2) * scale;
-        let cbx = x - (xn1 - xp1) * scale;
-        let cby = y - (yn1 - yp1) * scale;
-
-        if (i == 1) {
-            cax = xp1 + (x - 0) * scale;
-            cay = yp1 + (y - c.height + 8) * scale;
-        } else if (i == dates.length - 1) {
-            cbx = x - (x - xp1) * scale;
-            cby = y - (y - yp1) * scale;
-        }
-        ctx.strokeStyle = "#00ffff";
-        ctx.lineWidth = 6;
-        ctx.bezierCurveTo(cax, cay, cbx, cby, x, y);
-        ctx.stroke();
-    }
-    for (let i in dates) {
-        i = parseInt(i);
-        let weight = parseFloat(data[dates[i].toString()]);
-        let x = xratio * (dates[i] - xmin) + xbias;
-        let y = c.height - yratio * (weight - ymin) - ybias;
-        ctx.beginPath();
-        ctx.font = Math.floor(c.width / 30) + "px Arial";
-        ctx.arc(x, y, 6, 0, 2 * Math.PI);
-        ctx.fillStyle = get_bmi_color(weight);
-        get_bmi_color(weight);
-        ctx.fill();
-        if (i == 0 || i == dates.length - 1) {
-            ctx.fillText(weight, x - ctx.measureText(weight).width / 2, y + c.width / 30 + 9);
-        } else {
-            ctx.fillText(weight, x - ctx.measureText(weight).width / 2, y + c.width / 30 + 9);
-        }
-    }*/
 }
 
 function plot_curve(canvas, xs, ys, color = "#00ffff", width = 6) {
