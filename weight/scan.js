@@ -11,7 +11,7 @@ var i_gray = "gray";
 var i_green = "#75ed2f";
 var i_yellow = "yellow";
 var i_red = "#ff0000";
-var bgc = "#7dace3";
+var bgc = getComputedStyle(document.body, null).backgroundColor;
 var bgc2 = "#abbfd6";
 
 function fill() {

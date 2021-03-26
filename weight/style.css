@@ -21,8 +21,8 @@ button#setting {
 }
 
 html, body {
-    color: #7dace3;
-    background-color: #7dace3;
+    /*color: #7dace3;*/
+    background-color: #4285f4;
 }
 
 canvas#graph {
