@@ -262,7 +262,7 @@ function show_graph() {
     let yratio = (c.height - ybias * 2) / yperiod;
     for (let i = 0; i < dates.length; i++) {
         xs.push(xratio * (dates[i] - xmin) + xbias);
-        ys.push(c.height - yratio * (weight - ymin) - ybias);
+        ys.push(c.height - yratio * (weights[i] - ymin) - ybias);
     }
 
     //daw graph
