@@ -320,9 +320,9 @@ function plot_number(canvas, xs, ys, value, color = "black", font = "default", p
         ctx.beginPath();
         ctx.font = font == "default" ? Math.floor(canvas.width / 30) + "px Arial" : font;
         ctx.arc(xs[i], ys[i], ptsize, 0, 2 * Math.PI);
-        ctx.fillStyle = isColor(color) ? color : color(value);
+        ctx.fillStyle = isColor(color) ? color : color(value[i]);
         ctx.fill();
-        ctx.fillText(value, xs[i] - ctx.measureText(value).width / 2, ys[i] + canvas.width / 30 + 9);
+        ctx.fillText(value[i], xs[i] - ctx.measureText(value[i]).width / 2, ys[i] + canvas.width / 30 + 9);
 
     }
 }
