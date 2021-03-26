@@ -106,8 +106,11 @@ function move_pointer(weight) {
 
 function draw_indicator(weight) {
     let c = document.getElementById("indicator");
+    let ctx = c.getContext("2d");
     let r = Math.min(c.width, c.height) / 2.1;
     clr_canvas(c);
+    ctx.fillStyle = bgc;
+    ctx.fillRect(0, 0, c.width, c.height);
     draw_ranges(c, user_height, r);
     draw_pointer(c, weight, user_height, r * 0.92);
 }
