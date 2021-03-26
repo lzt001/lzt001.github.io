@@ -11,7 +11,7 @@ var i_gray = "gray";
 var i_green = "#75ed2f";
 var i_yellow = "yellow";
 var i_red = "#ff0000";
-var bgc = getComputedStyle(document.body, null).backgroundColor;
+var bgc = window.getComputedStyle(document.body, null).backgroundColor;
 var bgc2 = "#abbfd6";
 
 function fill() {
@@ -230,7 +230,7 @@ function show_graph() {
     let c = document.getElementById("graph");
     clr_canvas(c);
     let data = JSON.parse(localStorage.getItem("data"));
-    //get extreme value and clean data in the same hour
+    //get extremum and clean data in the same hour
     let dates = new Array();
     let weights = new Array();
     let max, min;
