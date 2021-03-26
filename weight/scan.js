@@ -300,7 +300,7 @@ function plot_curve(canvas, xs, ys, color = "#00ffff", width = 6) {
 
         if (i == 1) {
             cax = xp1 + (x - 0) * scale;
-            cay = yp1 + (y - c.height + 8) * scale;
+            cay = yp1 + (y - canvas.height + 8) * scale;
         } else if (i == xs.length - 1) {
             cbx = x - (x - xp1) * scale;
             cby = y - (y - yp1) * scale;
