@@ -57,7 +57,7 @@ function setting() {
         win.style.left = border + "px";
         border = document.documentElement.clientWidth - 2 * (border + parseInt(getComputedStyle(win).borderLeftWidth) + parseInt(getComputedStyle(win).paddingLeft));
         win.style.width = border + "px";
-        win.style.height = win.style.width;
+        //win.style.height = "auto";
         document.getElementById("height").value = parseInt(user_height * 100);
         win.style.visibility = "visible";
     } else {
