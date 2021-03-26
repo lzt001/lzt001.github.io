@@ -6,6 +6,7 @@ div#settingwin {
     border: 1px solid #333;
     padding: 5px;
     height: auto;
+    display: block;
 }
 
 div#warning {
