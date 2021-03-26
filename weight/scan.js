@@ -283,23 +283,14 @@ function plot_curve(canvas, x, y, xs, ys, color = "#00ffff", width = 6) {
         } else {
             ctx.moveTo(xs[i - 1], ys[i - 1]);
         }
-
-        let xp2 = i - 2 < 0 ? x : xs[i - 2];
-        let yp2 = i - 2 < 0 ? y : ys[i - 2];
+        let xp2 = i - 2 < 0 ? xs[i - 1] : xs[i - 2];
+        let yp2 = i - 2 < 0 ? ys[i - 1] : ys[i - 2];
         let xn1 = i == xs.length - 1 ? xs[i] : xs[i + 1];
         let yn1 = i == xs.length - 1 ? ys[i] : ys[i + 1];
         let cax = xs[i - 1] + (xs[i] - xp2) * scale;
         let cay = ys[i - 1] + (ys[i] - yp2) * scale;
         let cbx = xs[i] - (xn1 - xs[i - 1]) * scale;
         let cby = ys[i] - (yn1 - ys[i - 1]) * scale;
-
-        /*if (i == 1) {
-            cax = xs[i - 1] + (xs[i] - x) * scale;
-            cay = ys[i - 1] + (ys[i] - y) * scale;
-        } else if (i == xs.length - 1) {
-            cbx = xs[i] - (xs[i] - xs[i - 1]) * scale;
-            cby = ys[i] - (ys[i] - ys[i - 1]) * scale;
-        }*/
         ctx.strokeStyle = color;
         ctx.lineWidth = width;
         ctx.bezierCurveTo(cax, cay, cbx, cby, xs[i], ys[i]);
