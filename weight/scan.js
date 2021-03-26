@@ -51,7 +51,7 @@ function fill() {
 
 function setting() {
     let win = document.getElementById("settingwin");
-    if (win.style.visibility == "hidden") {
+    if (getComputedStyle(win, null).visibility == "hidden") {
         let border = 10;
         win.style.top = border + "px";
         win.style.left = border + "px";
