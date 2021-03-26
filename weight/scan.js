@@ -42,7 +42,7 @@ function fill() {
     let width = document.documentElement.clientWidth - margin_width;
     let height = document.documentElement.clientHeight - c.offsetTop - parseInt(getComputedStyle(document.body, null).marginBottom);
     c.style.width = width - 4 + "px";
-    c.style.height = height - 8 + "px";
+    c.style.height = height - 12 + "px";
     c.width = Math.floor(width * window.devicePixelRatio);
     c.height = Math.floor(height * window.devicePixelRatio);
 

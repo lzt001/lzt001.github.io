@@ -26,6 +26,7 @@ html, body {
 }
 
 canvas#graph {
+    margin-top: 4px;
     border: 2px solid black;
 }
 
