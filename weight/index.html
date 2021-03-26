@@ -15,10 +15,6 @@
     <canvas id="indicator"></canvas>
     <div id="settingwin">
         <p>身高：<input type="number" id="height" />cm</p>
-        <p>
-            出生年月：<input type="number" id="year" step="1" pattern="\d+" /> 年
-            <input type="number" id="month" step="1" min="1" max="12" pattern="\d+" /> 月
-        </p>
         <button id="confirm" onclick="update();">确定</button>
         <button id="close" onclick="document.getElementById('settingwin').style.visibility = 'hidden';">关闭</button>
     </div>

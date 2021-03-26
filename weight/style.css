@@ -33,11 +33,3 @@ canvas#graph {
 input#height{
     width: 50px;
 }
-
-input#year {
-    width: 50px;
-}
-
-input#month {
-    width: 30px;
-}

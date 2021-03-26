@@ -1,5 +1,4 @@
 var user_height = localStorage.getItem("height");
-var user_age = localStorage.getItem("age");
 var rad_range = 1.7;
 var start_rad = (2 - rad_range) / 2 + 0.5;
 var weight_range = 100;
@@ -52,12 +51,14 @@ function fill() {
 
 function setting() {
     let win = document.getElementById("settingwin");
+    
     let border = 10;
     win.style.top = border + "px";
     win.style.left = border + "px";
     border = document.documentElement.clientWidth - 2 * (border + parseInt(getComputedStyle(win).borderLeftWidth) + parseInt(getComputedStyle(win).paddingLeft));
     win.style.width = border + "px";
     win.style.height = win.style.width;
+    document.getElementById("height").value = parseInt(user_height*100);
     win.style.visibility = "visible";
 }
 
@@ -66,8 +67,6 @@ function update() {
     localStorage.setItem("height", user_height);
     document.getElementById('settingwin').style.visibility = 'hidden';
     let d = new Date();
-    user_age = d.getFullYear() - document.getElementById("year").value + (d.getMonth() + 1 - document.getElementById("month").value) / 12.0;
-    localStorage.setItem("age", user_age);
     draw_indicator(0);
     show_graph();
 }
