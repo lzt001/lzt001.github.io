@@ -53,7 +53,7 @@ function setting() {
     let win = document.getElementById("settingwin");
     if (getComputedStyle(win, null).visibility == "hidden") {
         let border = 10;
-        win.style.top = document.documentElement.clientHeight / 2 + "px";
+        win.style.top = border + "px";
         win.style.left = border + "px";
         border = document.documentElement.clientWidth - 2 * (border + parseInt(getComputedStyle(win).borderLeftWidth) + parseInt(getComputedStyle(win).paddingLeft));
         win.style.width = border + "px";
