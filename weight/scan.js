@@ -51,15 +51,18 @@ function fill() {
 
 function setting() {
     let win = document.getElementById("settingwin");
-    
-    let border = 10;
-    win.style.top = border + "px";
-    win.style.left = border + "px";
-    border = document.documentElement.clientWidth - 2 * (border + parseInt(getComputedStyle(win).borderLeftWidth) + parseInt(getComputedStyle(win).paddingLeft));
-    win.style.width = border + "px";
-    win.style.height = win.style.width;
-    document.getElementById("height").value = parseInt(user_height*100);
-    win.style.visibility = "visible";
+    if (win.style.visibility == "hidden") {
+        let border = 10;
+        win.style.top = border + "px";
+        win.style.left = border + "px";
+        border = document.documentElement.clientWidth - 2 * (border + parseInt(getComputedStyle(win).borderLeftWidth) + parseInt(getComputedStyle(win).paddingLeft));
+        win.style.width = border + "px";
+        win.style.height = win.style.width;
+        document.getElementById("height").value = parseInt(user_height * 100);
+        win.style.visibility = "visible";
+    } else {
+        win.style.visibility = "hidden";
+    }
 }
 
 function update() {
