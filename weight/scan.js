@@ -207,6 +207,7 @@ function getdiv(height) {
 }
 
 function get_bmi_color(weight, height) {
+    height = arguments.length == 1 ? user_height : height;
     let bmi = weight / (height * height);
     if (bmi < 18.4) {
         return i_gray;
@@ -228,24 +229,29 @@ function show_graph() {
     let c = document.getElementById("graph");
     clr_canvas(c);
     let data = JSON.parse(localStorage.getItem("data"));
+    //get extreme value and clean data in the same hour
     let dates = new Array();
+    let weights = new Array();
     let max, min;
     let lastdate = new Date(0);
     for (let key in data) {
         let date = new Date(key);
+        let weight = parseFloat(data[key]);
         if (lastdate.getFullYear() != date.getFullYear()
             || lastdate.getMonth() != date.getMonth()
             || lastdate.getDate() != date.getDate()
             || lastdate.getHours() != date.getHours()) {
             dates.push(key);
+            weights.push(weight);
             lastdate = date;
         }
-        let weight = parseFloat(data[key])
         max = max > weight ? max : weight;
         min = min < weight ? min : weight;
     }
     dates = dates.sort((a, b) => a - b);
-
+    //calculate position of weight
+    let xs = new Array();
+    let ys = new Array();
     let xperiod = dates[dates.length - 1] - dates[0];
     let yperiod = max - min;
     let xmin = dates[0];
@@ -253,16 +259,24 @@ function show_graph() {
     let xbias = 100;
     let xratio = (c.width - xbias*2) / xperiod;
     let ybias = 80;
-    let yratio = (c.height - ybias*2) / yperiod;
+    let yratio = (c.height - ybias * 2) / yperiod;
+    for (let i = 0; i < dates.length; i++) {
+        xs.push(xratio * (dates[i] - xmin) + xbias);
+        ys.push(c.height - yratio * (weight - ymin) - ybias);
+    }
+
+    //daw graph
     let ctx = c.getContext("2d");
     ctx.fillStyle = bgc;
     ctx.fillRect(0, 0, c.width, c.height);
-    for (let i in dates) {
+    plot_curve(c, xs, ys);
+    plot_number(c, xs, ys, weights, get_bmi_color);
+    /*for (let i in dates) {
         i = parseInt(i);
         let weight = parseFloat(data[dates[i].toString()]);
         let x = xratio * (dates[i] - xmin) + xbias;
         let y = c.height - yratio * (weight - ymin) - ybias;
-        let scale = 0.08;
+        let scale = 0.06;
         let xp1, yp1;
         ctx.beginPath();
         if (i == 0) {
@@ -302,14 +316,75 @@ function show_graph() {
         ctx.beginPath();
         ctx.font = Math.floor(c.width / 30) + "px Arial";
         ctx.arc(x, y, 6, 0, 2 * Math.PI);
-        ctx.fillStyle = get_bmi_color(weight, user_height);
+        ctx.fillStyle = get_bmi_color(weight);
+        get_bmi_color(weight);
         ctx.fill();
         if (i == 0 || i == dates.length - 1) {
             ctx.fillText(weight, x - ctx.measureText(weight).width / 2, y + c.width / 30 + 9);
         } else {
             ctx.fillText(weight, x - ctx.measureText(weight).width / 2, y + c.width / 30 + 9);
         }
+    }*/
+}
+
+function plot_curve(canvas, xs, ys, color = "#00ffff", width = 6) {
+    let ctx = canvas.getContext("2d");
+    for (let i = 0; i < xs.length; i++) {
+        let x = xs[i];
+        let y = ys[y];
+        let scale = 0.06;
+        let xp1, yp1;
+        ctx.beginPath();
+        if (i == 0) {
+            continue;
+        } else {
+            xp1 = xs[i - 1];
+            yp1 = ys[i - 1];
+            ctx.moveTo(xp1, yp1);
+        }
+
+        let xp2 = xs[i - 2];
+        let yp2 = i - 2 < 0 ? null : ys[i - 2];
+        let xn1 = xs[i + 1];
+        let yn1 = i == xs.length - 1 ? null : ys[i + 1];
+        let cax = xp1 + (x - xp2) * scale;
+        let cay = yp1 + (y - yp2) * scale;
+        let cbx = x - (xn1 - xp1) * scale;
+        let cby = y - (yn1 - yp1) * scale;
+
+        if (i == 1) {
+            cax = xp1 + (x - 0) * scale;
+            cay = yp1 + (y - c.height + 8) * scale;
+        } else if (i == xs.length - 1) {
+            cbx = x - (x - xp1) * scale;
+            cby = y - (y - yp1) * scale;
+        }
+        ctx.strokeStyle = color;
+        ctx.lineWidth = width;
+        ctx.bezierCurveTo(cax, cay, cbx, cby, x, y);
+        ctx.stroke();
     }
+}
+
+function plot_number(canvas, xs, ys, value, color = "black", font = "default", ptsize = 6) {
+    let ctx = canvas.getContext("2d");
+    for (let i = 0; i < xs.length; i++) {
+        let x = xs[i];
+        let y = ys[i];
+        ctx.beginPath();
+        ctx.font = font == "default" ? Math.floor(c.width / 30) + "px Arial" : font;
+        ctx.arc(xs[i], ys[i], ptsize, 0, 2 * Math.PI);
+        ctx.fillStyle = isColor(color) ? color : color(value);
+        ctx.fill();
+        ctx.fillText(value, xs[i] - ctx.measureText(value).width / 2, ys[i] + canvas.width / 30 + 9);
+
+    }
+}
+
+function isColor(strColor) {
+    var s = new Option().style;
+    s.color = strColor;
+    return s.color == strColor;
 }
 
 function log(text) {
