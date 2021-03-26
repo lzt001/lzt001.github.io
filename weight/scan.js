@@ -276,38 +276,33 @@ function show_graph() {
 function plot_curve(canvas, xs, ys, color = "#00ffff", width = 6) {
     let ctx = canvas.getContext("2d");
     for (let i = 0; i < xs.length; i++) {
-        let x = xs[i];
-        let y = ys[i];
         let scale = 0.06;
-        let xp1, yp1;
         ctx.beginPath();
         if (i == 0) {
             continue;
         } else {
-            xp1 = xs[i - 1];
-            yp1 = ys[i - 1];
-            ctx.moveTo(xp1, yp1);
+            ctx.moveTo(xs[i - 1], ys[i - 1]);
         }
 
         let xp2 = xs[i - 2];
         let yp2 = i - 2 < 0 ? null : ys[i - 2];
         let xn1 = xs[i + 1];
         let yn1 = i == xs.length - 1 ? null : ys[i + 1];
-        let cax = xp1 + (x - xp2) * scale;
-        let cay = yp1 + (y - yp2) * scale;
-        let cbx = x - (xn1 - xp1) * scale;
-        let cby = y - (yn1 - yp1) * scale;
+        let cax = xs[i - 1] + (xs[i] - xp2) * scale;
+        let cay = ys[i - 1] + (ys[i] - yp2) * scale;
+        let cbx = xs[i] - (xn1 - xs[i - 1]) * scale;
+        let cby = ys[i] - (yn1 - ys[i - 1]) * scale;
 
         if (i == 1) {
-            cax = xp1 + (x - 0) * scale;
-            cay = yp1 + (y - canvas.height + 8) * scale;
+            cax = xs[i - 1] + (xs[i] - 0) * scale;
+            cay = ys[i - 1] + (ys[i] - canvas.height + 8) * scale;
         } else if (i == xs.length - 1) {
-            cbx = x - (x - xp1) * scale;
-            cby = y - (y - yp1) * scale;
+            cbx = xs[i] - (xs[i] - xs[i - 1]) * scale;
+            cby = ys[i] - (ys[i] - ys[i - 1]) * scale;
         }
         ctx.strokeStyle = color;
         ctx.lineWidth = width;
-        ctx.bezierCurveTo(cax, cay, cbx, cby, x, y);
+        ctx.bezierCurveTo(cax, cay, cbx, cby, xs[i], ys[i]);
         ctx.stroke();
     }
 }
