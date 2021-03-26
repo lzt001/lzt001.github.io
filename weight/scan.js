@@ -277,7 +277,7 @@ function plot_curve(canvas, xs, ys, color = "#00ffff", width = 6) {
     let ctx = canvas.getContext("2d");
     for (let i = 0; i < xs.length; i++) {
         let x = xs[i];
-        let y = ys[y];
+        let y = ys[i];
         let scale = 0.06;
         let xp1, yp1;
         ctx.beginPath();
