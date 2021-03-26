@@ -25,6 +25,9 @@ html, body {
     background-color: #7dace3;
 }
 
+canvas#graph {
+    border: 2px solid black;
+}
 
 input#height{
     width: 50px;
