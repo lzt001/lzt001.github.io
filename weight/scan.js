@@ -132,7 +132,7 @@ function draw_ranges(canvas, height, r) {
         ctx.font = Math.floor(canvas.width / 25) + "px Arial";
         ctx.fillStyle = i_gray;
         let txt = "0KG";
-        ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.41);
+        ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
         //ctx.translate(-canvas.width / 2, -canvas.height / 2);
         let img = ctx.getImageData(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
         //ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
