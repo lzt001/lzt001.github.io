@@ -136,8 +136,8 @@ function draw_ranges(canvas, height, r) {
         //ctx.translate(-canvas.width / 2, -canvas.height / 2);
         let img = ctx.getImageData(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
         //ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
-        clr_canvas(canvas);
         ctx.rotate(-(2 - 0.5 - rad_range * 0 / weight_range - start_rad) * Math.PI);
+        clr_canvas(canvas);
         ctx.putImageData(img, -canvas.width / 2, -canvas.height / 2);
 
         let bd = 0.0013;
