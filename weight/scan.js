@@ -134,10 +134,10 @@ function draw_ranges(canvas, height, r) {
         let txt = "0KG";
         ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
         //ctx.translate(-canvas.width / 2, -canvas.height / 2);
-        let img = ctx.getImageData(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
+        //let img = ctx.getImageData(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
         ctx.rotate(-(0.5 + rad_range * 0 / weight_range + start_rad) * Math.PI);
         clr_canvas(canvas);
-        ctx.putImageData(img, -canvas.width / 2, -canvas.height / 2);
+        //ctx.putImageData(img, -canvas.width / 2, -canvas.height / 2);
 
         let bd = 0.0013;
         let line_width = 45;
