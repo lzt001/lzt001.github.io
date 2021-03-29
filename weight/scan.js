@@ -128,7 +128,7 @@ function draw_ranges(canvas, height, r) {
     let ctx = canvas.getContext("2d");
     if (panel === undefined || last_height != height) {
         //ctx.rotate((2 - 0.5 - rad_range * 0 / weight_range - start_rad) * Math.PI);
-        ctx.font = Math.floor(canvas.width / 15) + "px Arial";
+        ctx.font = Math.floor(canvas.width / 25) + "px Arial";
         ctx.fillStyle = i_gray;
         let txt = "0KG";
         ctx.fillText(txt, canvas.width / 2 - ctx.measureText(txt).width / 2, canvas.height * 0.12);
