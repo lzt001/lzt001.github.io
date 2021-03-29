@@ -112,7 +112,7 @@ function draw_indicator(weight) {
     ctx.fillStyle = bgc;
     ctx.fillRect(0, 0, c.width, c.height);
     draw_ranges(c, user_height, r);
-    draw_pointer(c, weight, user_height, r * 0.92);
+    //draw_pointer(c, weight, user_height, r * 0.92);
 }
 
 function draw_range(canvas, r, start, end, color, width) {
@@ -135,7 +135,8 @@ function draw_ranges(canvas, height, r) {
         ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.42);
         //ctx.translate(-canvas.width / 2, -canvas.height / 2);
         let img = ctx.getImageData(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
-        ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
+        //ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
+        clr_canvas(canvas);
         ctx.rotate(-(2 - 0.5 - rad_range * 0 / weight_range - start_rad) * Math.PI);
         ctx.putImageData(img, -canvas.width / 2, -canvas.height / 2);
 
@@ -237,7 +238,7 @@ function get_bmi_color(weight, height) {
 
 function clr_canvas(canvas) {
     let ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(-canvas.width, -canvas.height, canvas.width, canvas.height);
 }
 
 function show_graph() {
