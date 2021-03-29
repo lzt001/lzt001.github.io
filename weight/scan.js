@@ -148,6 +148,7 @@ function draw_ranges(canvas, height, r) {
         ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
         //ctx.rotate((0.5 + start_rad) * Math.PI);
         ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.translate(canvas.width / 2, canvas.height / 2);
 
         let bd = 0.0013;
         let line_width = 45;
