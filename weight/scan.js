@@ -135,7 +135,7 @@ function draw_ranges(canvas, height, r) {
         ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.42);
         //ctx.translate(-canvas.width / 2, -canvas.height / 2);
         let img = ctx.getImageData(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
-        cxt.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
+        ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
         ctx.rotate(-(2 - 0.5 - rad_range * 0 / weight_range - start_rad) * Math.PI);
         ctx.putImageData(img, -canvas.width / 2, -canvas.height / 2);
 
@@ -236,8 +236,8 @@ function get_bmi_color(weight, height) {
 }
 
 function clr_canvas(canvas) {
-    var cxt = canvas.getContext("2d");
-    cxt.clearRect(0, 0, canvas.width, canvas.height);
+    let ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function show_graph() {
