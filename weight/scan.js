@@ -6,7 +6,7 @@ var weight_bais = 0;
 var panel;
 var last_height = 0;
 var last_data = 0;
-var i_gray = "#404040";
+var i_gray = "#606060";
 var i_green = "#75ed2f";
 var i_yellow = "yellow";
 var i_red = "#ff0000";
