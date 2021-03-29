@@ -131,7 +131,7 @@ function draw_ranges(canvas, height, r) {
         ctx.translate(canvas.width / 2, canvas.height / 2);
         ctx.font = Math.floor(canvas.width / 25) + "px Arial";
         ctx.fillStyle = "black";
-        let txt = "0KG";
+        let txt = "0";
         ctx.rotate((0.5 + rad_range * 0 / weight_range + start_rad) * Math.PI);
         ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
         //ctx.rotate(-(0.5 + rad_range * 0 / weight_range + start_rad) * Math.PI);
@@ -146,7 +146,7 @@ function draw_ranges(canvas, height, r) {
         txt = div["obesity"].toFixed(2);
         ctx.rotate(rad_range * (div["obesity"] - div["overweight"]) / weight_range * Math.PI);
         ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
-        ctx.rotate((0.5 + rad_range * 0 / weight_range + start_rad) * Math.PI);
+        ctx.rotate((0.5 + start_rad * 2) * Math.PI);
 
         let bd = 0.0013;
         let line_width = 45;
