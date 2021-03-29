@@ -2,7 +2,7 @@ var user_height = localStorage.getItem("height");
 var rad_range = 1.7;
 var start_rad = (2 - rad_range) / 2 + 0.5;
 var weight_range = 100;
-var weight_bais = 30;
+var weight_bais = 0;
 var panel;
 var last_height = 0;
 var last_data = 0;
@@ -131,7 +131,7 @@ function draw_ranges(canvas, height, r) {
         ctx.translate(canvas.width / 2, canvas.height / 2);
         ctx.font = Math.floor(canvas.width / 25) + "px Arial";
 
-        let txt = "0";
+        let txt = weight_bais;
         ctx.fillStyle = "black";
         ctx.rotate((0.5 + rad_range * 0 / weight_range + start_rad) * Math.PI);
         ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
@@ -149,6 +149,11 @@ function draw_ranges(canvas, height, r) {
         txt = div["obesity"].toFixed(2);
         ctx.fillStyle = i_red;
         ctx.rotate(rad_range * (div["obesity"] - div["overweight"]) / weight_range * Math.PI);
+        ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
+
+        txt = weight_bais + weight_range;
+        ctx.fillStyle = i_red;
+        ctx.rotate(rad_range * (weight_bais + weight_range - div["obesity"]) / weight_range * Math.PI);
         ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
 
         ctx.setTransform(1, 0, 0, 1, canvas.width / 2, canvas.height / 2);
