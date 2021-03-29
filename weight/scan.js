@@ -165,17 +165,15 @@ function draw_ranges(canvas, height, r) {
 
 function draw_pointer(canvas, weight, height, r) {
     let ctx = canvas.getContext("2d");
-    let ctrx = 0;
-    let ctry = 0;
     let line_width = 6;
     let bd = 1.004
     //draw num
-    ctx.lineWidth = line_width;
+    ctx.lineWidth = 2
     ctx.font = Math.floor(canvas.width / 12) + "px Arial";
     ctx.strokeStyle = "black";
     let txt = weight.toFixed(1) + "KG";
-    let x = ctrx - ctx.measureText(txt).width / 2;
-    let y = canvas.height / 1.1;
+    let x = -ctx.measureText(txt).width / 2;
+    let y = canvas.height / 2.5;
     ctx.strokeText(txt, x, y);
     ctx.fillStyle = get_bmi_color(weight, height);
     ctx.fillText(txt, x, y);
@@ -186,25 +184,25 @@ function draw_pointer(canvas, weight, height, r) {
 
     //draw border
     ctx.beginPath();
-    ctx.arc(canvas.width / 2, canvas.height / 2, 9, 0, 2 * Math.PI);
+    ctx.arc(0, 0, 9, 0, 2 * Math.PI);
     ctx.fillStyle = "black"
     ctx.lineWidth = 1;
     ctx.fill();
     ctx.beginPath();
-    ctx.moveTo(canvas.width / 2, canvas.height / 2);
-    ctx.lineTo(ctrx + bd * x, ctry + bd * y);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(bd * x, bd * y);
     ctx.lineWidth = line_width + 2;
     ctx.strokeStyle = "black"
     ctx.stroke();
     //draw pointer
     ctx.beginPath();
-    ctx.arc(canvas.width / 2, canvas.height / 2, 8, 0, 2 * Math.PI);
+    ctx.arc(0, 0, 8, 0, 2 * Math.PI);
     ctx.fillStyle = get_bmi_color(weight, height)
     ctx.lineWidth = 1;
     ctx.fill();
     ctx.beginPath();
-    ctx.moveTo(canvas.width / 2, canvas.height / 2);
-    ctx.lineTo(ctrx + x, ctry + y);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(x, y);
     ctx.lineWidth = line_width;
     ctx.strokeStyle = get_bmi_color(weight, height)
     ctx.stroke();
