@@ -127,21 +127,29 @@ function draw_range(canvas, r, start, end, color, width) {
 function draw_ranges(canvas, height, r) {
     let ctx = canvas.getContext("2d");
     if (panel === undefined || last_height != height) {
+        let div = getdiv(height);
         ctx.translate(canvas.width / 2, canvas.height / 2);
-        ctx.rotate((0.5 + rad_range * 0 / weight_range + start_rad) * Math.PI);
         ctx.font = Math.floor(canvas.width / 25) + "px Arial";
-        ctx.fillStyle = i_gray;
+        ctx.fillStyle = "black";
         let txt = "0KG";
+        ctx.rotate((0.5 + rad_range * 0 / weight_range + start_rad) * Math.PI);
         ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
-        //ctx.translate(-canvas.width / 2, -canvas.height / 2);
-        //let img = ctx.getImageData(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
-        ctx.rotate(-(0.5 + rad_range * 0 / weight_range + start_rad) * Math.PI);
-        clr_canvas(canvas);
-        //ctx.putImageData(img, -canvas.width / 2, -canvas.height / 2);
+        //ctx.rotate(-(0.5 + rad_range * 0 / weight_range + start_rad) * Math.PI);
+        txt = div["underweight"].toFixed(2);
+        ctx.rotate(rad_range * (div["underweight"] - 0) / weight_range * Math.PI);
+        ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
+
+        txt = div["overweight"].toFixed(2);
+        ctx.rotate(rad_range * (div["overweight"] - div["underweight"]) / weight_range * Math.PI);
+        ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
+
+        txt = div["obesity"].toFixed(2);
+        ctx.rotate(rad_range * (div["obesity"] - div["overweight"]) / weight_range * Math.PI);
+        ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
+        ctx.rotate((0.5 + rad_range * 0 / weight_range + start_rad) * Math.PI);
 
         let bd = 0.0013;
         let line_width = 45;
-        let div = getdiv(height);
         let udrad = div["underweight"] / weight_range * rad_range;
         let uwrad = div["overweight"] / weight_range * rad_range;
         let obrad = div["obesity"] / weight_range * rad_range;
