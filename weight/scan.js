@@ -146,7 +146,7 @@ function draw_ranges(canvas, height, r) {
         txt = div["obesity"].toFixed(2);
         ctx.rotate(rad_range * (div["obesity"] - div["overweight"]) / weight_range * Math.PI);
         ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
-        ctx.rotate((0.5 + start_rad * 2) * Math.PI);
+        ctx.rotate((0.5 + start_rad) * Math.PI);
 
         let bd = 0.0013;
         let line_width = 45;
