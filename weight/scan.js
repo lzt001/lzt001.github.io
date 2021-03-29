@@ -127,6 +127,14 @@ function draw_range(canvas, r, start, end, color, width) {
 function draw_ranges(canvas, height, r) {
     let ctx = canvas.getContext("2d");
     if (panel === undefined || last_height != height) {
+        ctx.rotate((2 - 0.5 - rad_range * 0 / weight_range - start_rad) * Math.PI);
+        ctx.font = Math.floor(canvas.width / 18) + "px Arial";
+        ctx.fillStyle = i_gray;
+        ctx.fillText("0KG", canvas.width / 2, canvas.height / 9);
+        let img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        ctx.rotate(-(2 - 0.5 - rad_range * 0 / weight_range - start_rad) * Math.PI);
+        ctx.putImageData(img, 0, 0);
+
         let bd = 0.0013;
         let line_width = 45;
         let div = getdiv(height);
