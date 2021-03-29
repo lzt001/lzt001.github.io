@@ -112,7 +112,7 @@ function draw_indicator(weight) {
     ctx.fillStyle = bgc;
     ctx.fillRect(0, 0, c.width, c.height);
     draw_ranges(c, user_height, r);
-    //draw_pointer(c, weight, user_height, r * 0.92);
+    draw_pointer(c, weight, user_height, r * 0.92);
 }
 
 function draw_range(canvas, r, start, end, color, width) {
@@ -135,7 +135,6 @@ function draw_ranges(canvas, height, r) {
         ctx.fillText(txt, -ctx.measureText(txt).width / 2, -canvas.height * 0.415);
         //ctx.translate(-canvas.width / 2, -canvas.height / 2);
         let img = ctx.getImageData(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
-        //ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width / 2, canvas.height / 2);
         ctx.rotate(-(0.5 + rad_range * 0 / weight_range + start_rad) * Math.PI);
         clr_canvas(canvas);
         ctx.putImageData(img, -canvas.width / 2, -canvas.height / 2);
@@ -166,8 +165,8 @@ function draw_ranges(canvas, height, r) {
 
 function draw_pointer(canvas, weight, height, r) {
     let ctx = canvas.getContext("2d");
-    let ctrx = canvas.width / 2;
-    let ctry = canvas.height / 2;
+    let ctrx = 0;
+    let ctry = 0;
     let line_width = 6;
     let bd = 1.004
     //draw num
