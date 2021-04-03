@@ -10,7 +10,7 @@ var i_gray = "#606060";
 var i_green = "#75ed2f";
 var i_yellow = "yellow";
 var i_red = "#ff0000";
-var bgc = window.getComputedStyle(document.body, null).backgroundColor;
+var bgc = window.getComputedStyle(document.body, null).backgroundColor.colorHex();
 var bgc2 = "#abbfd6";
 
 function fill() {
