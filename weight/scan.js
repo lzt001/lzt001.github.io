@@ -11,7 +11,7 @@ var i_green = "#75ed2f";
 var i_yellow = "yellow";
 var i_red = "#ff0000";
 var bgc = RGBToHex(window.getComputedStyle(document.body, null).backgroundColor);
-var bgc2 = "#abbfd6";
+var bgc2 = "blue";//"#abbfd6";
 
 function fill() {
     //btn pos setting
