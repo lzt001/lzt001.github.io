@@ -321,7 +321,7 @@ function show_graph() {
         let txt = date.getMonth() + "/" + date.getDate();
         ctx.font = Math.floor(c.width / 35) + "px Arial";
         ctx.fillStyle = "#d74242";
-        ctx.fillText(txt, (i+0.5) * xratio * 86400000 + xbias - ctx.measureText(txt).width, c.height * 0.93);
+        ctx.fillText(txt, (i+0.5) * xratio * 86400000 + xbias - ctx.measureText(txt).width, c.height);
         ctx.fillStyle = oldstyle;
     }
     //draw graph
