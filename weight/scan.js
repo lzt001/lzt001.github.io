@@ -312,6 +312,7 @@ function show_graph() {
     let ctx = c.getContext("2d");
     ctx.fillStyle = bgc;
     ctx.fillRect(0, 0, c.width, c.height);
+    xbias = xbias - (dates[0] % 86400000) * xratio;
     for (let i = 0; i * xratio * 86400000 < c.width; i++) {
         ctx.fillStyle = ctx.fillStyle == bgc ? bgc2 : bgc;
         ctx.fillRect(i * xratio * 86400000 + xbias, 0, (i + 1) * xratio * 86400000 + xbias, c.height);
@@ -320,7 +321,7 @@ function show_graph() {
         let txt = date.getMonth() + "/" + date.getDate();
         ctx.font = Math.floor(c.width / 35) + "px Arial";
         ctx.fillStyle = "#d74242";
-        ctx.fillText(txt, i * xratio * 86400000 + xbias - ctx.measureText(txt).width, c.height * 0.9);
+        ctx.fillText(txt, (i+0.5) * xratio * 86400000 + xbias - ctx.measureText(txt).width, c.height * 0.93);
         ctx.fillStyle = oldstyle;
     }
     //draw graph
