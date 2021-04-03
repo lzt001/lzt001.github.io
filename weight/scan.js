@@ -10,7 +10,7 @@ var i_gray = "#606060";
 var i_green = "#75ed2f";
 var i_yellow = "yellow";
 var i_red = "#ff0000";
-var bgc = window.getComputedStyle(document.body, null).backgroundColor.colorHex();
+var bgc = RGBToHex(window.getComputedStyle(document.body, null).backgroundColor);
 var bgc2 = "#abbfd6";
 
 function fill() {
@@ -366,6 +366,26 @@ function isColor(strColor) {
     var s = new Option().style;
     s.color = strColor;
     return s.color == strColor;
+}
+
+function RGBToHex(rgb) {
+    // Choose correct separator
+    let sep = rgb.indexOf(",") > -1 ? "," : " ";
+    // Turn "rgb(r,g,b)" into [r,g,b]
+    rgb = rgb.substr(4).split(")")[0].split(sep);
+
+    let r = (+rgb[0]).toString(16),
+        g = (+rgb[1]).toString(16),
+        b = (+rgb[2]).toString(16);
+
+    if (r.length == 1)
+        r = "0" + r;
+    if (g.length == 1)
+        g = "0" + g;
+    if (b.length == 1)
+        b = "0" + b;
+
+    return "#" + r + g + b;
 }
 
 function log(text) {
