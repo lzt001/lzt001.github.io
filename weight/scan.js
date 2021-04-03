@@ -299,7 +299,7 @@ function show_graph() {
     let wmin = min;
     let xbias = 100;
     let xratio = (c.width - xbias*2) / xperiod;
-    let ybias = 80;
+    let ybias = 100;
     let yratio = (c.height - ybias * 2) / yperiod;
     weights = [];
     for (let i = 0; i < dates.length; i++) {
@@ -318,7 +318,7 @@ function show_graph() {
         ctx.fillRect(i * xratio * 86400000 + xbias, 0, (i + 1) * xratio * 86400000 + xbias, c.height);
         let oldstyle = ctx.fillStyle;
         let date = new Date(dates[i]);
-        let txt = date.getMonth() + "/" + date.getDate();
+        let txt = (date.getMonth() + 1) + "/" + date.getDate();
         ctx.font = Math.floor(c.width / 35) + "px Arial";
         ctx.fillStyle = "#d74242";
         ctx.fillText(txt, (i+0.5) * xratio * 86400000 + xbias - ctx.measureText(txt).width, c.height - 4);
