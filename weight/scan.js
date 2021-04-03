@@ -283,7 +283,7 @@ function show_graph() {
     }
     dates = dates.sort((a, b) => a - b);
     for (let i = dates.length - 1; i >= 0; i--) {
-        if (dates[dates.length - 1] - dates[i] >= 86400000 * 7) {
+        if (dates[dates.length - 1] - dates[i] >= 86400000 * 9) {
             dates.splice(i, 1);
         } else {
             max = max > data[dates[i]] ? max : data[dates[i]];
