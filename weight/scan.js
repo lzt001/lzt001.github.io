@@ -295,16 +295,16 @@ function show_graph() {
     let ys = new Array();
     let xperiod = dates[dates.length - 1] - dates[0];
     let yperiod = max - min;
-    let xmin = dates[0];
-    let ymin = min;
+    let dmin = dates[0];
+    let wmin = min;
     let xbias = 100;
     let xratio = (c.width - xbias*2) / xperiod;
     let ybias = 80;
     let yratio = (c.height - ybias * 2) / yperiod;
     weights = [];
     for (let i = 0; i < dates.length; i++) {
-        xs.push(xratio * (dates[i] - xmin) + xbias);
-        ys.push(c.height - yratio * (data[dates[i]] - ymin) - ybias);
+        xs.push(xratio * (dates[i] - dmin) + xbias);
+        ys.push(c.height - yratio * (data[dates[i]] - wmin) - ybias);
         weights.push(data[dates[i]]);
     }
 
@@ -312,7 +312,7 @@ function show_graph() {
     let ctx = c.getContext("2d");
     ctx.fillStyle = bgc;
     ctx.fillRect(0, 0, c.width, c.height);
-    xbias = xbias - (dates[0] % 86400000) * xratio;
+    xbias = xbias - (dmin - new Date(new Date(dmin).toDateString()).getTime()) * xratio;
     for (let i = 0; i * xratio * 86400000 < c.width; i++) {
         ctx.fillStyle = ctx.fillStyle == bgc ? bgc2 : bgc;
         ctx.fillRect(i * xratio * 86400000 + xbias, 0, (i + 1) * xratio * 86400000 + xbias, c.height);
