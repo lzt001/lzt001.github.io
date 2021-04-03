@@ -266,6 +266,7 @@ function show_graph() {
     let max, min, dayweight;
     let lastdate = new Date(0);
     for (let key in data) {
+        key = parseInt(key);
         let date = new Date(key);
         let weight = parseFloat(data[key]);
         /*dayweight = dayweight === undefined ? weight : dayweight;
@@ -314,7 +315,7 @@ function show_graph() {
             break;
         }
         xs.push(xratio * (dates[i] - xmin) + xbias);
-        ys.push(c.height - yratio * (weights[new Date(dates[i]).toDateString()] - ymin) - ybias);
+        ys.push(c.height - yratio * (data[dates[i].toString()] - ymin) - ybias);
     }
 
     //daw graph
