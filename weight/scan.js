@@ -283,7 +283,7 @@ function show_graph() {
     }
     dates = dates.sort((a, b) => a - b);
     for (let i = dates.length - 1; i >= 0; i--) {
-        if (dates[dates.length - 1] - dates[i] >= 1000 * 86400 * 7) {
+        if (dates[dates.length - 1] - dates[i] >= 86400000 * 10) {
             dates.splice(i, 1);
         } else {
             max = max > data[dates[i]] ? max : data[dates[i]];
@@ -308,10 +308,16 @@ function show_graph() {
         weights.push(data[dates[i]]);
     }
 
-    //daw graph
+    //draw background
     let ctx = c.getContext("2d");
     ctx.fillStyle = bgc;
     ctx.fillRect(0, 0, c.width, c.height);
+    let bgstart = 80 - (xs[0] % 86400000) * xratio;
+    for (let i = bgstart; i < c.width; i += xratio * 86400000) {
+        ctx.fillStyle = ctx.fillStyle == bgc ? bgc2 : bgc;
+        ctx.fillRect(i, 0, xratio * 86400000, c.height);
+    }
+    //daw graph
     plot_curve(c, 0, c.height - 8, xs, ys);
     plot_number(c, xs, ys, weights, get_bmi_color);
 }
