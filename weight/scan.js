@@ -318,9 +318,9 @@ function show_graph() {
         ctx.fillRect(i * xratio * 86400000 + xbias, 0, (i + 1) * xratio * 86400000 + xbias, c.height);
         let oldstyle = ctx.fillStyle;
         let date = new Date(dates[i]);
-        let txt = (date.getMonth() + 1) + "/" + date.getDate();
+        let txt = dates[i] ? (date.getMonth() + 1) + "/" + date.getDate() : "";
         ctx.font = Math.floor(c.width / 35) + "px Arial";
-        ctx.fillStyle = "#d74242";
+        ctx.fillStyle = "black";//"#d74242";
         ctx.fillText(txt, (i + 0.5) * xratio * 86400000 + xbias - ctx.measureText(txt).width / 2, c.height - 6);
         ctx.fillStyle = oldstyle;
     }
