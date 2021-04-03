@@ -269,20 +269,6 @@ function show_graph() {
         key = parseInt(key);
         let date = new Date(key);
         let weight = parseFloat(data[key]);
-        /*dayweight = dayweight === undefined ? weight : dayweight;
-        if (lastdate.getFullYear() == date.getFullYear()
-            && lastdate.getMonth() == date.getMonth()
-            && lastdate.getDate() == date.getDate()) {
-            dayweight = dayweight < weight ? dayweight : weight;
-        }
-        if (lastdate.getFullYear() != date.getFullYear()
-            || lastdate.getMonth() != date.getMonth()
-            || lastdate.getDate() != date.getDate()) {
-            dates.push(key);
-            weights[dates.getTime()] = dayweight;
-            lastdate = date;
-            dayweight = undefined;
-        }*/
         if (lastdate.toDateString() == date.toDateString()
             && weights[date.toDateString()] > weight) {
             dates[dates.length - 1] = key;
@@ -298,6 +284,11 @@ function show_graph() {
         min = min < weight ? min : weight;
     }
     dates = dates.sort((a, b) => a - b);
+    for (let i = dates.length - 1; i >= 0; i--) {
+        if (xmax - dates[i] >= 1000 * 86400 * 7) {
+            dates.splice(i, 1);
+        }
+    }
     //calculate position of weight
     let xs = new Array();
     let ys = new Array();
@@ -312,15 +303,10 @@ function show_graph() {
     let yratio = (c.height - ybias * 2) / yperiod;
     weights = [];
     for (let i = dates.length - 1; i >= 0; i--) {
-        /*
-        if (xmax - dates[i] >= 1000 * 86400 * 7) {
-            break;
-        }*/
         xs.push(xratio * (dates[i] - xmin) + xbias);
         ys.push(c.height - yratio * (data[dates[i]] - ymin) - ybias);
         weights.push(data[dates[i]]);
     }
-    xmin
 
     //daw graph
     let ctx = c.getContext("2d");
