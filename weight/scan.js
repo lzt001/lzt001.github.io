@@ -309,7 +309,7 @@ function show_graph() {
     let xratio = (c.width - xbias*2) / xperiod;
     let ybias = 80;
     let yratio = (c.height - ybias * 2) / yperiod;
-    for (let i = 0; i < dates.length; i++) {
+    for (let i = dates.length - 1; i >= 0; i--) {
         if (xmax - dates[i] >= 1000 * 86400 * 7) {
             break;
         }
