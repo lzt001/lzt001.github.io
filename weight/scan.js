@@ -310,11 +310,11 @@ function show_graph() {
     let ybias = 80;
     let yratio = (c.height - ybias * 2) / yperiod;
     for (let i = 0; i < dates.length; i++) {
-        if (xmax.getTime() - dates[i].getTime() >= 1000 * 86400 * 7) {
+        if (xmax - dates[i] >= 1000 * 86400 * 7) {
             break;
         }
         xs.push(xratio * (dates[i] - xmin) + xbias);
-        ys.push(c.height - yratio * (weights[dates[i].toDateString()] - ymin) - ybias);
+        ys.push(c.height - yratio * (weights[new Date(dates[i]).toDateString()] - ymin) - ybias);
     }
 
     //daw graph
