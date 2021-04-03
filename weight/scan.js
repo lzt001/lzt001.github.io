@@ -322,7 +322,6 @@ function show_graph() {
         ctx.font = Math.floor(c.width / 30) + "px Arial";
         ctx.fillText(txt, i * xratio * 43200000 + xbias - ctx.measureText(txt).width / 2, c.width * 0.9);
         ctx.fillStyle = oldstyle;
-        cnt++;
     }
     //draw graph
     plot_curve(c, 0, c.height - 8, xs, ys);
