@@ -262,18 +262,35 @@ function show_graph() {
     let data = JSON.parse(localStorage.getItem("data"));
     //get extremum and clean data in the same hour
     let dates = new Array();
-    let weights = new Array();
-    let max, min;
+    let weights = {};
+    let max, min, dayweight;
     let lastdate = new Date(0);
     for (let key in data) {
         let date = new Date(key);
         let weight = parseFloat(data[key]);
+        /*dayweight = dayweight === undefined ? weight : dayweight;
+        if (lastdate.getFullYear() == date.getFullYear()
+            && lastdate.getMonth() == date.getMonth()
+            && lastdate.getDate() == date.getDate()) {
+            dayweight = dayweight < weight ? dayweight : weight;
+        }
         if (lastdate.getFullYear() != date.getFullYear()
             || lastdate.getMonth() != date.getMonth()
-            || lastdate.getDate() != date.getDate()
-            || lastdate.getHours() != date.getHours()) {
+            || lastdate.getDate() != date.getDate()) {
             dates.push(key);
-            weights.push(weight);
+            weights[dates.getTime()] = dayweight;
+            lastdate = date;
+            dayweight = undefined;
+        }*/
+        if (lastdate.toDateString() == date.toDateString()
+            && weights[date.toDateString()] > weight) {
+            dates[dates.length - 1] = key;
+            weights[date.toDateString()] = weight;
+            lastdate = date;
+        }
+        if (lastdate.toDateString() != date.toDateString()) {
+            dates.push(key);
+            weights[date.toDateString()] = weight;
             lastdate = date;
         }
         max = max > weight ? max : weight;
@@ -286,14 +303,18 @@ function show_graph() {
     let xperiod = dates[dates.length - 1] - dates[0];
     let yperiod = max - min;
     let xmin = dates[0];
+    let xmax = dates[dates.length - 1];
     let ymin = min;
     let xbias = 100;
     let xratio = (c.width - xbias*2) / xperiod;
     let ybias = 80;
     let yratio = (c.height - ybias * 2) / yperiod;
     for (let i = 0; i < dates.length; i++) {
+        if (xmax.getTime() - dates[i].getTime() >= 1000 * 86400 * 7) {
+            break;
+        }
         xs.push(xratio * (dates[i] - xmin) + xbias);
-        ys.push(c.height - yratio * (weights[i] - ymin) - ybias);
+        ys.push(c.height - yratio * (weights[dates[i].toDateString()] - ymin) - ybias);
     }
 
     //daw graph
