@@ -263,7 +263,7 @@ function show_graph() {
     //get extremum and clean data in the same hour
     let dates = new Array();
     let weights = {};
-    let max, min, dayweight;
+    let max, min;
     let lastdate = new Date(0);
     for (let key in data) {
         key = parseInt(key);
@@ -280,13 +280,14 @@ function show_graph() {
             weights[date.toDateString()] = weight;
             lastdate = date;
         }
-        max = max > weight ? max : weight;
-        min = min < weight ? min : weight;
     }
     dates = dates.sort((a, b) => a - b);
     for (let i = dates.length - 1; i >= 0; i--) {
         if (dates[dates.length - 1] - dates[i] >= 1000 * 86400 * 7) {
             dates.splice(i, 1);
+        } else {
+            max = max > data[dates[i]] ? max : data[dates[i]];
+            min = min < data[dates[i]] ? min : data[dates[i]];
         }
     }
     //calculate position of weight
@@ -295,7 +296,6 @@ function show_graph() {
     let xperiod = dates[dates.length - 1] - dates[0];
     let yperiod = max - min;
     let xmin = dates[0];
-    let xmax = dates[dates.length - 1];
     let ymin = min;
     let xbias = 100;
     let xratio = (c.width - xbias*2) / xperiod;
