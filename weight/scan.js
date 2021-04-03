@@ -302,7 +302,7 @@ function show_graph() {
     let ybias = 80;
     let yratio = (c.height - ybias * 2) / yperiod;
     weights = [];
-    for (let i = dates.length - 1; i >= 0; i--) {
+    for (let i = 0; i < dates.length - 1; i++) {
         xs.push(xratio * (dates[i] - xmin) + xbias);
         ys.push(c.height - yratio * (data[dates[i]] - ymin) - ybias);
         weights.push(data[dates[i]]);
@@ -328,8 +328,8 @@ function plot_curve(canvas, x, y, xs, ys, color = "#00ffff", width = 6) {
         }
         let xp2 = i - 2 < 0 ? x : xs[i - 2];
         let yp2 = i - 2 < 0 ? y : ys[i - 2];
-        let xn1 = i == xs.length - 1 ? xs[i]+80 : xs[i + 1];
-        let yn1 = i == xs.length - 1 ? ys[i]+80 : ys[i + 1];
+        let xn1 = i == xs.length - 1 ? xs[i] : xs[i + 1];
+        let yn1 = i == xs.length - 1 ? ys[i] : ys[i + 1];
         let cax = xs[i - 1] + (xs[i] - xp2) * scale;
         let cay = ys[i - 1] + (ys[i] - yp2) * scale;
         let cbx = xs[i] - (xn1 - xs[i - 1]) * scale;
