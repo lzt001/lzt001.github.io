@@ -310,13 +310,17 @@ function show_graph() {
     let xratio = (c.width - xbias*2) / xperiod;
     let ybias = 80;
     let yratio = (c.height - ybias * 2) / yperiod;
+    weights = [];
     for (let i = dates.length - 1; i >= 0; i--) {
+        /*
         if (xmax - dates[i] >= 1000 * 86400 * 7) {
             break;
-        }
+        }*/
         xs.push(xratio * (dates[i] - xmin) + xbias);
         ys.push(c.height - yratio * (data[dates[i]] - ymin) - ybias);
+        weights.push(data[dates[i]]);
     }
+    xmin
 
     //daw graph
     let ctx = c.getContext("2d");
