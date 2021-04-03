@@ -328,7 +328,7 @@ function plot_curve(canvas, x, y, xs, ys, color = "#00ffff", width = 6) {
         }
         let xp2 = i - 2 < 0 ? x : xs[i - 2];
         let yp2 = i - 2 < 0 ? y : ys[i - 2];
-        let xn1 = i == xs.length - 1 ? xs[i] : xs[i + 1];
+        let xn1 = i == xs.length - 1 ? xs[i] + 80 : xs[i + 1];
         let yn1 = i == xs.length - 1 ? ys[i] : ys[i + 1];
         let cax = xs[i - 1] + (xs[i] - xp2) * scale;
         let cay = ys[i - 1] + (ys[i] - yp2) * scale;
