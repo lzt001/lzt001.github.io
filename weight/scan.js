@@ -302,7 +302,7 @@ function show_graph() {
     let ybias = 80;
     let yratio = (c.height - ybias * 2) / yperiod;
     weights = [];
-    for (let i = 0; i < dates.length - 1; i++) {
+    for (let i = 0; i < dates.length; i++) {
         xs.push(xratio * (dates[i] - xmin) + xbias);
         ys.push(c.height - yratio * (data[dates[i]] - ymin) - ybias);
         weights.push(data[dates[i]]);
