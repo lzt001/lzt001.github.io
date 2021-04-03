@@ -312,15 +312,15 @@ function show_graph() {
     let ctx = c.getContext("2d");
     ctx.fillStyle = bgc;
     ctx.fillRect(0, 0, c.width, c.height);
-    for (let i = 0; i * xratio * c < c.width; i++) {
+    for (let i = 0; i * xratio * 86400000 < c.width; i++) {
         ctx.fillStyle = ctx.fillStyle == bgc ? bgc2 : bgc;
         ctx.fillRect(i * xratio * 86400000 + xbias, 0, (i + 1) * xratio * 86400000 + xbias, c.height);
         let oldstyle = ctx.fillStyle;
-        ctx.fillStyle = "#d74242";
         let date = new Date(dates[i]);
         let txt = date.getMonth() + "/" + date.getDate();
-        ctx.font = Math.floor(c.width / 30) + "px Arial";
-        ctx.fillText(txt, i * xratio * 86400000 + xbias - ctx.measureText(txt).width / 2, c.height * 0.90);
+        ctx.font = Math.floor(c.width / 35) + "px Arial";
+        ctx.fillStyle = "#d74242";
+        ctx.fillText(txt, i * xratio * 86400000 + xbias - ctx.measureText(txt).width, c.height * 0.9);
         ctx.fillStyle = oldstyle;
     }
     //draw graph
