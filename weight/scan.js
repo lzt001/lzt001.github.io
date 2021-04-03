@@ -313,7 +313,7 @@ function show_graph() {
     ctx.fillStyle = bgc;
     ctx.fillRect(0, 0, c.width, c.height);
     let bgstart = 80 - (xs[0] % 86400000) * xratio;
-    for (let i = bgstart; i <= c.width; i += xratio * 86400000) {
+    for (let i = bgstart; i < c.width; i += xratio * 86400000) {
         ctx.fillStyle = ctx.fillStyle == bgc ? bgc2 : bgc;
         ctx.fillRect(i, 0, i + xratio * 86400000, c.height);
     }
