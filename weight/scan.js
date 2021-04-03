@@ -315,7 +315,7 @@ function show_graph() {
             break;
         }
         xs.push(xratio * (dates[i] - xmin) + xbias);
-        ys.push(c.height - yratio * (data[dates[i].toString()] - ymin) - ybias);
+        ys.push(c.height - yratio * (data[dates[i]] - ymin) - ybias);
     }
 
     //daw graph
