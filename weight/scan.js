@@ -312,12 +312,19 @@ function show_graph() {
     let ctx = c.getContext("2d");
     ctx.fillStyle = bgc;
     ctx.fillRect(0, 0, c.width, c.height);
-    let bgstart = 80 - (xs[0] % 86400000) * xratio;
-    for (let i = bgstart; i < c.width; i += xratio * 86400000) {
+    for (let i = 0; i * xratio * 86400000 < c.width; i++) {
         ctx.fillStyle = ctx.fillStyle == bgc ? bgc2 : bgc;
-        ctx.fillRect(i, 0, i + xratio * 86400000, c.height);
+        ctx.fillRect(i * xratio * 86400000 + xbias, 0, (i + 1) * xratio * 86400000 + xbias, c.height);
+        let oldstyle = ctx.fillStyle;
+        ctx.fillStyle = "#d74242";
+        let date = new Date(dates[i]);
+        let txt = date.getMonth() + "/" + date.getDate();
+        ctx.font = Math.floor(canvas.width / 30) + "px Arial";
+        ctx.fillText(txt, i * xratio * 43200000 + xbias - ctx.measureText(txt).width / 2, canvas.width * 0.9);
+        ctx.fillStyle = oldstyle;
+        cnt++;
     }
-    //daw graph
+    //draw graph
     plot_curve(c, 0, c.height - 8, xs, ys);
     plot_number(c, xs, ys, weights, get_bmi_color);
 }
