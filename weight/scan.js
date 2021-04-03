@@ -320,7 +320,7 @@ function show_graph() {
         let date = new Date(dates[i]);
         let txt = date.getMonth() + "/" + date.getDate();
         ctx.font = Math.floor(c.width / 30) + "px Arial";
-        ctx.fillText(txt, i * xratio * 43200000 + xbias - ctx.measureText(txt).width / 2, c.width * 0.9);
+        ctx.fillText(txt, i * xratio * 43200000 + xbias - ctx.measureText(txt).width / 2, c.height * 0.9);
         ctx.fillStyle = oldstyle;
     }
     //draw graph
